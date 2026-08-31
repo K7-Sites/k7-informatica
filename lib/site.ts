@@ -7,6 +7,9 @@ export const site = {
   instagram: "https://www.instagram.com/kassiokennedy_/",
 };
 
-export function whatsappUrl(message = "Olá, vim pelo site e gostaria de solicitar um orçamento.") {
-  return `https://wa.me/${site.phoneRaw}?text=${encodeURIComponent(message)}`;
+export function whatsappUrl(message = "Gostaria de solicitar um orçamento.") {
+  const cleanMessage = message.replace(/^Olá,\s*/i, "").replace(/^vim pelo site(?: da K7 Informática)? e\s*/i, "");
+  const attributedMessage = `Olá, vim pelo site da K7 Informática. ${cleanMessage}`;
+
+  return `https://wa.me/${site.phoneRaw}?text=${encodeURIComponent(attributedMessage)}`;
 }
