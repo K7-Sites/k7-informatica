@@ -36,3 +36,8 @@
 .container{width:min(100% - 64px,var(--max));margin-inline:auto}
 @media(max-width:900px){.container{width:calc(100% - 32px)}}
 @media(max-width:540px){.container{width:100%;padding-inline:12px}}
+
+/* Full-width layout: keep only 10px on each screen edge. */
+.container{width:calc(100% - 20px);max-width:none;padding-inline:0;margin-inline:auto}
+@media(max-width:900px){.container{width:calc(100% - 20px);max-width:none;padding-inline:0}}
+@media(max-width:540px){.container{width:calc(100% - 20px);max-width:none;padding-inline:0}}
