@@ -31,13 +31,7 @@
 @media(max-width:540px){.container{width:calc(100% - 24px)}.site-header .brand-logo{width:108px;height:46px}.hero{min-height:620px;padding:112px 0 42px}.hero h1{font-size:clamp(32px,10vw,37px)}.hero-actions{gap:10px}.hero-actions .button{min-height:48px}.section{padding:58px 0}.eyebrow{font-size:9px;letter-spacing:.15em}.symptom-grid{grid-template-columns:1fr}.mini-card{min-height:60px}.featured-grid{gap:12px}.attendance-grid,.benefit-grid,.repair-grid{grid-template-columns:1fr}.attendance-grid a{min-height:62px}.check-list{gap:9px}.tabs{grid-template-columns:1fr 1fr}.tabs button{font-size:11px;line-height:1.25}.tip-content{padding:14px}.tip-content>div:last-child{padding:3px 3px 8px}.section-asset{width:100%}.screen-section-asset{padding:10px}.professional-photo{max-width:100%;border-radius:15px}.region-map{min-height:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:22px 4px;background:radial-gradient(circle,rgba(21,101,255,.12),transparent 75%)}.region-map .radar{display:none}.region-map>span{position:static;transform:none;font-size:10px;padding:8px 10px}.final-cta .button{width:100%;min-height:48px}.footer-grid{grid-template-columns:1fr;gap:26px}.footer-grid .button{min-height:46px}.footer-logo{width:150px;height:84px}.footer-bottom{align-items:flex-start}.footer-bottom span:last-child{margin-top:2px}}
 @media(max-width:360px){.site-header .brand-logo{width:100px;height:44px}.menu-toggle{width:42px;height:42px;flex-basis:42px}.hero h1{font-size:30px}.button{padding-inline:16px}.tabs button{font-size:10px}.section-head h2,.upgrade h2,.screen-grid h2,.about h2,.regions h2,.final-cta h2{font-size:28px}}
 
-/* Responsive content width: comfortable desktop reading, edge-to-edge mobile layout. */
-:root{--max:1280px}
-.container{width:min(100% - 64px,var(--max));margin-inline:auto}
-@media(max-width:900px){.container{width:calc(100% - 32px)}}
-@media(max-width:540px){.container{width:100%;padding-inline:12px}}
-
-/* Full-width layout: keep only 10px on each screen edge. */
-.container{width:calc(100% - 20px);max-width:none;padding-inline:0;margin-inline:auto}
-@media(max-width:900px){.container{width:calc(100% - 20px);max-width:none;padding-inline:0}}
-@media(max-width:540px){.container{width:calc(100% - 20px);max-width:none;padding-inline:0}}
+/* Shared horizontal alignment for logo, navigation and page sections. */
+.container{width:calc(100% - 64px);max-width:none;margin-inline:auto;padding-inline:0}
+@media(max-width:900px){.container{width:calc(100% - 40px);max-width:none;padding-inline:0}}
+@media(max-width:540px){.container{width:calc(100% - 32px);max-width:none;padding-inline:0}}
