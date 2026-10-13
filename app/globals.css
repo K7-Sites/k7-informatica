@@ -35,3 +35,12 @@
 .container{width:calc(100% - 64px);max-width:none;margin-inline:auto;padding-inline:0}
 @media(max-width:900px){.container{width:calc(100% - 40px);max-width:none;padding-inline:0}}
 @media(max-width:540px){.container{width:calc(100% - 32px);max-width:none;padding-inline:0}}
+
+/* Service videos */
+.work-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.work-video-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#0b1120;box-shadow:0 20px 55px rgba(0,0,0,.22)}
+.work-video-card video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#050814}
+.work-video-info{padding:22px 24px}
+.work-video-info h3{margin:0 0 6px;font-size:21px}
+.work-video-info p{margin:0;color:var(--muted);font-size:14px}
+@media(max-width:780px){.work-video-grid{grid-template-columns:1fr;gap:18px}.work-video-info{padding:18px}}
