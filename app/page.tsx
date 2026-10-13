@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FullscreenVideo } from "@/components/FullscreenVideo";
 import { Header } from "@/components/Header";
 import { RevealObserver } from "@/components/Reveal";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
@@ -28,17 +29,11 @@ export default function Home() {
         </div>
         <div className="work-video-grid">
           <article className="work-video-card">
-            <video controls preload="metadata" playsInline aria-label="Limpeza de PC Gamer">
-              <source src="/videos/limpeza-pc-gamer.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo.
-            </video>
+            <FullscreenVideo src="/videos/limpeza-pc-gamer.mp4" label="Limpeza de PC Gamer" />
             <div className="work-video-info"><h3>Limpeza de PC Gamer</h3><p>Manutenção e limpeza interna para cuidar do seu computador.</p></div>
           </article>
           <article className="work-video-card">
-            <video controls preload="metadata" playsInline aria-label="Troca de tela de notebook">
-              <source src="/videos/troca-tela-notebook.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo.
-            </video>
+            <FullscreenVideo src="/videos/troca-tela-notebook.mp4" label="Troca de tela de notebook" />
             <div className="work-video-info"><h3>Troca de tela de notebook</h3><p>Acompanhe um dos serviços de manutenção realizados pela K7.</p></div>
           </article>
         </div>
