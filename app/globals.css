@@ -44,3 +44,15 @@
 .work-video-info h3{margin:0 0 6px;font-size:21px}
 .work-video-info p{margin:0;color:var(--muted);font-size:14px}
 @media(max-width:780px){.work-video-grid{grid-template-columns:1fr;gap:18px}.work-video-info{padding:18px}}
+
+/* Preserve the rotating radar on smaller screens. */
+@media(max-width:900px){
+  .regions .region-map{position:relative;display:grid;place-items:center;min-height:400px;width:100%;max-width:440px;margin-inline:auto;padding:0}
+  .regions .region-map .radar{display:grid;position:relative;width:190px;height:190px}
+  .regions .region-map>span{position:absolute;left:calc(50% + cos(calc(var(--i) * 45deg)) * 155px);top:calc(50% + sin(calc(var(--i) * 45deg)) * 155px);transform:translate(-50%,-50%);font-size:10px;padding:6px 8px}
+}
+@media(max-width:540px){
+  .regions .region-map{min-height:340px;max-width:340px}
+  .regions .region-map .radar{width:150px;height:150px;box-shadow:0 0 0 45px rgba(21,101,255,.02),0 0 0 85px rgba(21,101,255,.015)}
+  .regions .region-map>span{left:calc(50% + cos(calc(var(--i) * 45deg)) * 119px);top:calc(50% + sin(calc(var(--i) * 45deg)) * 119px);font-size:9px;padding:5px 6px}
+}
