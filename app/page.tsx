@@ -32,8 +32,8 @@ export default function Home() {
         </div>
         <div className="work-video-grid">
           <article className="work-video-card">
-            <FullscreenVideo src="/videos/limpeza-pc-gamer.mp4" label="Limpeza de PC Gamer" />
-            <div className="work-video-info"><h3>Limpeza de PC Gamer</h3><p>Manutenção e limpeza interna para cuidar do seu computador.</p></div>
+            <FullscreenVideo src="/videos/limpeza-pc-notebook.mp4" label="Limpeza de PC e notebook" />
+            <div className="work-video-info"><h3>Limpeza de PC e notebook</h3><p>Confira nosso processo de limpeza e manutenção para cuidar do seu equipamento.</p></div>
           </article>
           <article className="work-video-card">
             <FullscreenVideo src="/videos/troca-tela-notebook.mp4" label="Troca de tela de notebook" />
