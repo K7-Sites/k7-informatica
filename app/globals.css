@@ -71,3 +71,5 @@
 .professional-gallery-dots button.is-active{background:#4382ff;width:24px;border-radius:8px}
 @media(max-width:780px){.professional-gallery{max-width:430px}.professional-gallery-viewport{height:clamp(270px,78vw,390px)}}
 @media(prefers-reduced-motion:reduce){.professional-gallery-slide{transition:none}}
+
+.contact-lead-form{width:min(100%,650px);margin:0 auto;display:grid;gap:18px;padding:clamp(20px,4vw,36px);border:1px solid var(--line);border-radius:20px;background:var(--card)}.contact-lead-form label{display:grid;gap:7px;font-size:14px;font-weight:600}.contact-lead-form input,.contact-lead-form textarea{width:100%;min-width:0;border:1px solid rgba(216,221,230,.22);border-radius:10px;background:#050814;color:#fff;padding:13px 15px;font:inherit;font-size:16px}.contact-lead-form input:focus,.contact-lead-form textarea:focus{outline:2px solid #1565ff;outline-offset:1px}.contact-lead-form button:disabled{opacity:.6;cursor:wait}.contact-feedback-success{color:#86efac}.contact-feedback{color:#fca5a5}
