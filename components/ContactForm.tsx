@@ -6,11 +6,13 @@ export function ContactForm() {
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [success, setSuccess] = useState(false);
-  const [submissionId, setSubmissionId] = useState(() => crypto.randomUUID());
+  const [submissionId, setSubmissionId] = useState("");
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
     setBusy(true); setFeedback("");
+    const id = submissionId || crypto.randomUUID();
+    if (!submissionId) setSubmissionId(id);
     const form = event.currentTarget;
     const data = new FormData(form);
     const params = new URLSearchParams(window.location.search);
@@ -20,7 +22,7 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"), phone: data.get("phone"), message: data.get("message"),
-          website: data.get("website"), submission_id: submissionId,
+          website: data.get("website"), submission_id: id,
           utm_source: params.get("utm_source"), utm_medium: params.get("utm_medium"),
           utm_campaign: params.get("utm_campaign"),
         }),
