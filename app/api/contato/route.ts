@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "node:crypto";
 
 export async function POST(request: Request) {
   const token = process.env.K7_GESTAO_LEAD_TOKEN;
