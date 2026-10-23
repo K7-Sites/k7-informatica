@@ -86,3 +86,9 @@
 .thanks-content h1{font-size:clamp(40px,7vw,76px);line-height:1.05;margin:0}
 .thanks-content p{font-size:clamp(18px,2.5vw,25px);margin:0;color:#d8dde6}
 .thanks-check{width:90px;height:90px;display:grid;place-items:center;border-radius:50%;background:#1565ff;font-size:50px;box-shadow:0 0 60px #1565ff66}
+
+/* Compact contact form on desktop and mobile */
+.contact-lead-form{width:min(100%,440px)}
+.contact-modal-panel{width:min(100%,460px)}
+.contact-modal-panel .contact-lead-form{width:100%}
+.contact-lead-form .button{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
