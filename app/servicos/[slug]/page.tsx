@@ -1,0 +1,28 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Header } from "@/components/Header";
+import { ContactModal } from "@/components/ContactModal";
+import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { services, findService } from "@/lib/services";
+import { site, whatsappUrl } from "@/lib/site";
+type Props = { params: Promise<{slug:string}> };
+export function generateStaticParams(){return services.map(({slug})=>({slug}));}
+export async function generateMetadata({params}:Props):Promise<Metadata>{
+ const {slug}=await params;const s=findService(slug);if(!s)return {};
+ const title=`${s.title} no Tucuruvi e Zona Norte de SP | K7 Informática`;
+ const description=`${s.description} Atendimento na Zona Norte de São Paulo, com orçamento após avaliação técnica. Consulte a K7 Informática.`;
+ return {title,description,alternates:{canonical:`/servicos/${slug}`},openGraph:{title,description,url:`/servicos/${slug}`,images:["/images/hero-hardware.png"]},twitter:{card:"summary_large_image",title,description}};
+}
+export default async function ServicePage({params}:Props){
+ const {slug}=await params;const s=findService(slug);if(!s)notFound();
+ const related=services.filter(item=>item.slug!==slug).slice(0,4);
+ const schema={"@context":"https://schema.org","@type":"Service",name:s.title,description:s.description,url:`${site.url}/servicos/${slug}`,provider:{"@type":"LocalBusiness",name:site.name,url:site.url,telephone:`+${site.phoneRaw}`},areaServed:{"@type":"Place",name:"Tucuruvi e Zona Norte de São Paulo"}};
+ return <><Header/><ContactModal/><main>
+ <section className="hero service-hero" style={{minHeight:"min(650px,85vh)"}}><Image className="hero-background" src="/images/hero-hardware.png" alt="" fill priority sizes="100vw"/><div className="hero-overlay"/><div className="container hero-grid"><div className="hero-copy"><p className="eyebrow">K7 INFORMÁTICA • SERVIÇOS</p><h1>{s.title} <em>na Zona Norte de São Paulo.</em></h1><p className="hero-lead">{s.description}</p><div className="hero-actions"><WhatsAppLink className="button" href={whatsappUrl(`Olá, gostaria de avaliar o serviço de ${s.title}.`)} location="service-page">Solicitar avaliação <i className="fa-brands fa-whatsapp"/></WhatsAppLink><Link className="button button-ghost" href="/#servicos">Todos os serviços</Link></div></div></div></section>
+ <section className="section container"><div className="section-head"><p className="eyebrow">COMO PODEMOS AJUDAR</p><h2>O que avaliamos neste serviço?</h2><p>Cada equipamento passa por análise individual antes de definirmos a solução e o orçamento.</p></div><div className="benefit-grid">{s.benefits.map((item,i)=><article key={item}><i className={`fa-solid ${["fa-magnifying-glass","fa-screwdriver-wrench","fa-circle-check"][i]}`}/><h3>{item}</h3><p>O procedimento depende do diagnóstico e das condições do equipamento.</p></article>)}</div></section>
+ <section className="section section-dark"><div className="container"><div className="section-head"><p className="eyebrow">ATENDIMENTO TRANSPARENTE</p><h2>Como funciona a avaliação?</h2><p>Você explica o problema, nossa equipe avalia o equipamento e apresenta o orçamento antes de executar o serviço. Não emitimos orçamento definitivo sem avaliação técnica.</p></div><div className="center"><WhatsAppLink className="button" href={whatsappUrl(`Olá, quero solicitar avaliação para ${s.title}.`)} location="service-process">Conversar com a K7</WhatsAppLink></div></div></section>
+ <section className="section container"><div className="section-head"><p className="eyebrow">OUTRAS SOLUÇÕES</p><h2>Conheça outros serviços</h2></div><div className="service-grid">{related.map(item=><article key={item.slug}><i className="fa-solid fa-screwdriver-wrench"/><div><h3>{item.title}</h3><p>{item.description}</p><Link className="text-link" href={`/servicos/${item.slug}`}>Saiba mais <i className="fa-solid fa-arrow-right"/></Link></div></article>)}</div></section>
+ </main><footer><div className="container footer-grid"><div><Link className="brand brand-logo footer-logo" href="/"><Image src="/images/logo-k7-informatica.svg" alt="K7 Informática" width={471} height={267}/></Link><p>Tucuruvi — São Paulo — SP<br/>Zona Norte</p></div><div><h2>Contato</h2><a href={`tel:+${site.phoneRaw}`}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a></div><div><h2>Navegação</h2><Link href="/">Início</Link><Link href="/#servicos">Serviços</Link><Link href="/#sobre">Sobre</Link></div><div><h2>Precisa de assistência?</h2><p>O orçamento depende da avaliação do equipamento.</p><WhatsAppLink className="button button-sm" href={whatsappUrl()} location="service-footer">Falar no WhatsApp</WhatsAppLink></div></div><div className="container footer-bottom"><span>© 2026 K7 Informática</span><span>Desenvolvido por <a href="https://k7sites.com.br/">K7 Sites</a></span></div></footer><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,"\\u003c")}}/></>;
+}
