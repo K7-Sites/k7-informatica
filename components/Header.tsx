@@ -19,9 +19,9 @@ export function Header() {
       </div>
     </div>
     <div className="container header-inner">
-      <a className="brand brand-logo" href="#inicio" aria-label={`${site.name}, início`}><Image src="/images/logo-k7-informatica.svg" alt="Logo K7 Informática" width={471} height={267} priority sizes="(max-width: 780px) 142px, 176px" /></a>
+      <a className="brand brand-logo" href="/" aria-label={`${site.name}, início`}><Image src="/images/logo-k7-informatica.svg" alt="Logo K7 Informática" width={471} height={267} priority sizes="(max-width: 780px) 142px, 176px" /></a>
       <nav className={`nav ${open ? "open" : ""}`} aria-label="Navegação principal">
-        {nav.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
+        {nav.map(([label, href]) => <a key={href} href={`/${href}`} onClick={() => setOpen(false)}>{label}</a>)}
         <WhatsAppLink className="button button-sm mobile-cta" href={whatsappUrl()} location="header">Falar no WhatsApp</WhatsAppLink>
       </nav>
       <WhatsAppLink className="button button-sm desktop-cta" href={whatsappUrl()} location="header"><i className="fa-brands fa-whatsapp" aria-hidden="true" /> WhatsApp</WhatsAppLink>
