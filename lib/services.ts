@@ -27,7 +27,7 @@ export const services = [
     ]
   },
   {
-    "slug": "pc-gamer",
+    "slug": "manutencao-de-pc-gamer",
     "title": "Manutenção e upgrade de PC Gamer",
     "description": "Avaliação de desempenho, refrigeração, montagem e compatibilidade de componentes.",
     "benefits": [
@@ -54,7 +54,7 @@ export const services = [
     ]
   },
   {
-    "slug": "suporte-remoto",
+    "slug": "suporte-remoto-para-computadores",
     "title": "Suporte remoto para computadores",
     "description": "Orientação à distância para problemas de software que possam ser resolvidos com segurança.",
     "benefits": [
@@ -297,7 +297,7 @@ export const services = [
     ]
   },
   {
-    "slug": "troca-de-bateria",
+    "slug": "troca-de-bateria-de-notebook",
     "title": "Troca de bateria de notebook",
     "description": "Diagnóstico de autonomia e carregamento e avaliação de substituição compatível.",
     "benefits": [
@@ -324,7 +324,7 @@ export const services = [
     ]
   },
   {
-    "slug": "reparo-de-dobradica",
+    "slug": "reparo-de-dobradica-de-notebook",
     "title": "Reparo de dobradiça de notebook",
     "description": "Avaliação de articulações, tampa e carcaça com dificuldade para abrir ou fechar.",
     "benefits": [
