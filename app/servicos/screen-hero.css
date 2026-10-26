@@ -22,3 +22,22 @@
 @keyframes serviceScreenFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 /* Respeita usuários que preferem menos movimento. */
 @media(prefers-reduced-motion:reduce){.service-screen-hero-art{animation:none;will-change:auto}}
+
+/* Estúdio volumétrico ao fundo, isolado desta Hero e sem dependências WebGL. */
+.service-screen-hero{position:relative;isolation:isolate;background:#050608}
+.service-screen-hero-layout{position:relative;z-index:2}
+.service-screen-studio{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#050608}
+.service-screen-studio>div:not(.studio-beams):not(.studio-vignette){position:absolute;inset:0}
+.studio-back-wall{clip-path:polygon(22% 10%,78% 10%,78% 70%,22% 70%);background:linear-gradient(#191b21,#07080c)}
+.studio-ceiling{clip-path:polygon(0 0,100% 0,78% 10%,22% 10%);background:linear-gradient(#000,#101115)}
+.studio-left-wall{clip-path:polygon(0 0,22% 10%,22% 70%,0 100%);background:linear-gradient(90deg,#07080b,#202229)}
+.studio-right-wall{clip-path:polygon(100% 0,78% 10%,78% 70%,100% 100%);background:linear-gradient(270deg,#07080b,#202229)}
+.studio-floor{clip-path:polygon(0 100%,100% 100%,78% 70%,22% 70%);background:linear-gradient(0deg,#17191e,#050608)}
+.studio-beams{position:absolute;inset:0;z-index:1;animation:studioLightsOn 2.3s ease-out both}
+.studio-spot{position:absolute;top:3%;width:0;height:0}
+.studio-fixture{position:absolute;left:-12px;top:0;width:24px;height:40px;border:2px solid #0b0c0e;border-radius:4px 4px 11px 11px;background:linear-gradient(90deg,#222,#888 48%,#18191c);box-shadow:0 5px 15px #000,0 0 12px rgba(238,245,255,.7);z-index:2}
+.studio-beam{position:absolute;left:-18vw;top:30px;width:36vw;height:72vh;max-height:680px;clip-path:polygon(49% 0,51% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(230,240,255,.25),rgba(230,240,255,.09) 40%,rgba(230,240,255,0) 100%);filter:blur(14px);mix-blend-mode:screen}
+.studio-vignette{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 80% 80% at 50% 45%,transparent 35%,rgba(0,0,0,.72) 100%),linear-gradient(90deg,rgba(3,9,17,.75),transparent 55%)}
+@keyframes studioLightsOn{0%,22%{opacity:0}26%{opacity:1}31%{opacity:.15}37%{opacity:1}41%{opacity:.1}49%,100%{opacity:1}}
+@media(max-width:780px){.studio-beam{left:-30vw;width:60vw;height:85vh}.studio-vignette{background:linear-gradient(90deg,rgba(3,9,17,.85),rgba(3,9,17,.3)),radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.65))}}
+@media(prefers-reduced-motion:reduce){.studio-beams{animation:none}}
