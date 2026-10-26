@@ -8,7 +8,7 @@
 .service-screen-hero-copy h1 em{font-style:normal;color:#60b8ff}
 .service-screen-hero-copy .hero-lead{max-width:520px}
 .service-screen-hero-copy .hero-actions{margin-top:26px}
-.service-screen-hero-art{display:block;width:100%;height:auto;max-height:clamp(320px,46vw,560px);object-fit:contain;object-position:center;filter:drop-shadow(0 22px 35px rgba(0,0,0,.18))}
+.service-screen-hero-art{display:block;width:100%;height:auto;max-height:clamp(320px,46vw,560px);object-fit:contain;object-position:center;filter:drop-shadow(0 22px 35px rgba(0,0,0,.18));animation:serviceScreenFloat 5.5s ease-in-out infinite;will-change:transform}
 .service-screen-hero-note{font-size:.86rem;color:#b4c4d5;margin-top:20px;line-height:1.6}
 .service-screen-hero-note i{margin-right:8px;color:#60b8ff}
 /* Mobile: texto primeiro, imagem centralizada e sem recortes. */
@@ -17,3 +17,8 @@
 
 /* Mantém a animação de entrada sem esconder conteúdo quando JS não estiver disponível. */
 @media(prefers-reduced-motion:reduce){.service-screen-hero-art{filter:none}}
+
+/* Flutuação sutil exclusiva da imagem da Hero; não altera o layout. */
+@keyframes serviceScreenFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+/* Respeita usuários que preferem menos movimento. */
+@media(prefers-reduced-motion:reduce){.service-screen-hero-art{animation:none;will-change:auto}}
