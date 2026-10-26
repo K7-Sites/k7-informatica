@@ -14,4 +14,6 @@
 /* Mobile: texto primeiro, imagem centralizada e sem recortes. */
 @media(max-width:780px){.service-screen-hero-layout{grid-template-columns:minmax(0,1fr);min-height:unset;padding-block:clamp(36px,7vw,56px) 28px;gap:24px}.service-screen-hero-copy h1{font-size:clamp(2rem,7.7vw,3rem)}.service-screen-hero-art{max-width:480px;max-height:380px;margin-inline:auto}.service-screen-hero-copy .hero-actions{margin-top:22px}}
 @media(max-width:420px){.service-screen-hero-art{max-height:310px}.service-screen-hero-note{font-size:.8rem}}
-\n/* Mantém a animação de entrada sem esconder conteúdo quando JS não estiver disponível. */\n@media(prefers-reduced-motion:reduce){.service-screen-hero-art{filter:none}}\n
+
+/* Mantém a animação de entrada sem esconder conteúdo quando JS não estiver disponível. */
+@media(prefers-reduced-motion:reduce){.service-screen-hero-art{filter:none}}
