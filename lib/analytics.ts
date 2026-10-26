@@ -1,4 +1,4 @@
-export type AnalyticsLocation = "header" | "hero" | "symptoms" | "services" | "ssd" | "attendance" | "repairs" | "regions" | "cta" | "footer";
+export type AnalyticsLocation = "header" | "hero" | "symptoms" | "services" | "ssd" | "attendance" | "repairs" | "regions" | "cta" | "footer" | "service-page" | "service-process" | "service-footer";
 
 declare global {
   interface Window { gtag?: (...args: unknown[]) => void }
