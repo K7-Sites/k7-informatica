@@ -1,0 +1,16 @@
+/* Hero exclusiva: Troca de Tela de Notebook.
+   Usa a mesma largura .container e a tipografia global do site.
+   Imagem transparente com limites de tamanho para não dominar a viewport. */
+.service-screen-hero{background:#071422;min-height:unset;overflow:hidden}
+.service-screen-hero-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);align-items:center;gap:clamp(20px,3.5vw,52px);padding-block:clamp(48px,6vw,80px);min-height:clamp(430px,58vh,620px)}
+.service-screen-hero-copy{min-width:0;position:relative;z-index:1}
+.service-screen-hero-copy h1{color:#fff;font-size:clamp(2rem,3.5vw,3.75rem);line-height:1.13;letter-spacing:-.035em;margin:18px 0 20px;max-width:660px}
+.service-screen-hero-copy h1 em{font-style:normal;color:#60b8ff}
+.service-screen-hero-copy .hero-lead{max-width:520px}
+.service-screen-hero-copy .hero-actions{margin-top:26px}
+.service-screen-hero-art{display:block;width:100%;height:auto;max-height:clamp(290px,43vw,510px);object-fit:contain;object-position:center;filter:drop-shadow(0 22px 35px rgba(0,0,0,.18))}
+.service-screen-hero-note{font-size:.86rem;color:#b4c4d5;margin-top:20px;line-height:1.6}
+.service-screen-hero-note i{margin-right:8px;color:#60b8ff}
+/* Mobile: texto primeiro, imagem centralizada e sem recortes. */
+@media(max-width:780px){.service-screen-hero-layout{grid-template-columns:minmax(0,1fr);min-height:unset;padding-block:clamp(36px,7vw,56px) 28px;gap:24px}.service-screen-hero-copy h1{font-size:clamp(2rem,7.7vw,3rem)}.service-screen-hero-art{max-width:440px;max-height:340px;margin-inline:auto}.service-screen-hero-copy .hero-actions{margin-top:22px}}
+@media(max-width:420px){.service-screen-hero-art{max-height:280px}.service-screen-hero-note{font-size:.8rem}}
