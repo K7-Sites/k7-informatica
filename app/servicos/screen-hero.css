@@ -41,3 +41,21 @@
 @keyframes studioLightsOn{0%,22%{opacity:0}26%{opacity:1}31%{opacity:.15}37%{opacity:1}41%{opacity:.1}49%,100%{opacity:1}}
 @media(max-width:780px){.studio-beam{left:-30vw;width:60vw;height:85vh}.studio-vignette{background:linear-gradient(90deg,rgba(3,9,17,.85),rgba(3,9,17,.3)),radial-gradient(ellipse at center,transparent 20%,rgba(0,0,0,.65))}}
 @media(prefers-reduced-motion:reduce){.studio-beams{animation:none}}
+
+/* Hero de todas as páginas de serviço: imagem em plano de fundo, sem animação.
+   A arte ocupa a largura inteira; o degradê à esquerda mantém o texto legível.
+   Mantém o container e os demais componentes do site. */
+.service-background-hero{position:relative;isolation:isolate;overflow:hidden;background:#050d1d;min-height:unset}
+.service-hero-background{position:absolute;inset:0;z-index:0;pointer-events:none}
+.service-hero-background-image{object-fit:contain;object-position:center right}
+.service-hero-background-shade{position:absolute;inset:0;background:linear-gradient(90deg,#050d1d 0%,rgba(5,13,29,.98) 22%,rgba(5,13,29,.80) 42%,rgba(5,13,29,.24) 68%,rgba(5,13,29,.08) 100%)}
+.service-background-hero-layout{position:relative;z-index:1;display:flex;align-items:center;min-height:clamp(450px,58vh,650px);padding-block:clamp(64px,8vw,110px)}
+.service-background-hero .service-screen-hero-copy{width:min(100%,580px);z-index:1}
+.service-background-hero .service-screen-hero-copy h1{max-width:580px;text-wrap:balance}
+@media(max-width:780px){
+  .service-background-hero-layout{min-height:clamp(460px,74svh,660px);align-items:flex-start;padding-block:clamp(64px,11vw,96px) 100px}
+  .service-hero-background-image{object-fit:contain;object-position:center bottom}
+  .service-hero-background-shade{background:linear-gradient(180deg,#050d1d 0%,rgba(5,13,29,.97) 25%,rgba(5,13,29,.80) 46%,rgba(5,13,29,.20) 85%,rgba(5,13,29,.05) 100%)}
+  .service-background-hero .service-screen-hero-copy{width:100%}
+}
+@media(max-width:420px){.service-background-hero-layout{min-height:540px;padding-bottom:130px}}
