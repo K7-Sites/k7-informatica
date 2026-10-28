@@ -12,6 +12,26 @@ export async function POST(request: Request) {
   const service = typeof input.service === "string" ? input.service : "";
   const website = typeof input.website === "string" ? input.website.trim() : "";
   const submissionId = typeof input.submission_id === "string" ? input.submission_id : "";
+  const landingPath = typeof input.landing_path === "string" ? input.landing_path.slice(0, 255) : "/";
+  const servicePages: Record<string, string> = {
+    "/servicos/manutencao-de-notebook": "Manutenção de notebook",
+    "/servicos/manutencao-de-pc-gamer": "Manutenção de PC Gamer",
+    "/servicos/suporte-remoto-para-computadores": "Suporte remoto",
+    "/servicos/troca-de-pasta-termica-notebook-pc": "Troca de pasta térmica",
+    "/servicos/troca-de-tela-de-notebook": "Troca de tela de notebook",
+    "/servicos/instalacao-de-ssd-notebook-computador": "Instalação de SSD",
+    "/servicos/upgrade-memoria-ram-notebook-pc": "Upgrade de memória RAM",
+    "/servicos/formatacao-de-notebook-e-computador": "Formatação de notebook e computador",
+    "/servicos/backup-de-arquivos-notebook-pc": "Backup de arquivos",
+    "/servicos/limpeza-interna-notebook-pc-gamer": "Limpeza interna",
+    "/servicos/remocao-de-virus-notebook-pc": "Remoção de vírus",
+    "/servicos/troca-de-bateria-de-notebook": "Troca de bateria",
+    "/servicos/reparo-de-dobradica-de-notebook": "Reparo de dobradiça",
+    "/servicos/instalacao-windows-linux-notebook-pc": "Instalação de Windows ou Linux",
+    "/servicos/upgrade-placa-de-video-pc-gamer": "Upgrade de placa de vídeo",
+  };
+  const pageName = landingPath === "/" ? "Página inicial" : servicePages[landingPath] || "Outra página";
+  const pageUrl = `https://www.k7informatica.com${landingPath.startsWith("/") ? landingPath : "/"}`;
   if (name.length < 2 || name.length > 255 || !/^(?:55)?[1-9][0-9]{9,10}$/.test(phone.replace(/\D/g, "")) || !["Notebook", "Computador", "Outro"].includes(service) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionId)) {
     return NextResponse.json({ message: "Confira nome, WhatsApp e mensagem." }, { status: 422 });
   }
@@ -23,7 +43,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         name, phone, service: "outros", submission_id: submissionId,
         origin: "k7-informatica", project_type: "Assistência técnica",
-        project_message: `Serviço solicitado: ${service}`,
+        project_message: `Serviço solicitado: ${service}\nPágina de origem: ${pageName}\nURL de origem: ${pageUrl}`,
         utm_source: typeof input.utm_source === "string" ? input.utm_source.slice(0, 255) : undefined,
         utm_medium: typeof input.utm_medium === "string" ? input.utm_medium.slice(0, 255) : undefined,
         utm_campaign: typeof input.utm_campaign === "string" ? input.utm_campaign.slice(0, 255) : undefined,
