@@ -27,12 +27,15 @@ export function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
     const id = pendingId.current || crypto.randomUUID();
     pendingId.current = id;
     const params = new URLSearchParams(window.location.search);
+    const landingPath = window.location.pathname;
+    const landingUrl = window.location.origin + landingPath;
     try {
       const response = await fetch("/api/contato", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"), phone: data.get("phone"), service: data.get("service"),
           website: data.get("website"), submission_id: id,
+          landing_path: landingPath, landing_url: landingUrl,
           utm_source: params.get("utm_source"), utm_medium: params.get("utm_medium"),
           utm_campaign: params.get("utm_campaign"),
         }),
