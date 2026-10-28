@@ -49,18 +49,28 @@
 .service-hero-background{position:absolute;inset:0;z-index:0;pointer-events:none}
 .service-hero-background-image{object-fit:contain;object-position:center right}
 .service-hero-background-shade{position:absolute;inset:0;background:linear-gradient(90deg,#050d1d 0%,rgba(5,13,29,.98) 22%,rgba(5,13,29,.80) 42%,rgba(5,13,29,.24) 68%,rgba(5,13,29,.08) 100%)}
-.service-background-hero-layout{position:relative;z-index:1;display:flex;align-items:center;min-height:clamp(320px,43vh,470px);padding-block:clamp(36px,4vw,56px)}
+.service-background-hero-layout{position:relative;z-index:1;display:flex;align-items:center;min-height:clamp(265px,34vh,350px);padding-block:clamp(20px,2.5vw,32px)}
 .service-background-hero .service-screen-hero-copy{width:min(100%,580px);z-index:1}
 .service-background-hero .service-screen-hero-copy h1{max-width:580px;text-wrap:balance}
 @media(max-width:780px){
-  .service-background-hero-layout{min-height:clamp(380px,57svh,510px);align-items:flex-start;padding-block:clamp(36px,7vw,58px) 68px}
+  .service-background-hero-layout{min-height:clamp(310px,46svh,400px);align-items:center;padding-block:26px 32px}
   .service-hero-background-image{object-fit:contain;object-position:center bottom}
   .service-hero-background-shade{background:linear-gradient(180deg,#050d1d 0%,rgba(5,13,29,.97) 25%,rgba(5,13,29,.80) 46%,rgba(5,13,29,.20) 85%,rgba(5,13,29,.05) 100%)}
   .service-background-hero .service-screen-hero-copy{width:100%}
 }
-@media(max-width:420px){.service-background-hero-layout{min-height:400px;padding-bottom:72px}}
+@media(max-width:420px){.service-background-hero-layout{min-height:320px;padding-bottom:30px}}
 
 /* Altura compacta: a faixa de equipamentos abaixo da Hero fica visível na primeira tela. */
 .service-background-hero .service-screen-hero-copy h1{margin-block:12px 16px}
 .service-background-hero .service-screen-hero-copy .hero-actions{margin-top:18px}
 .service-background-hero .service-screen-hero-note{margin-top:14px}
+
+/* Hero extra compacta: deixa visíveis o cabeçalho superior e a faixa inferior ao entrar.
+   Tipografia responsiva evita que títulos longos extrapolem a altura disponível. */
+.service-background-hero .service-screen-hero-copy h1{font-size:clamp(1.85rem,3.2vw,3.25rem);line-height:1.1;margin-block:9px 12px}
+.service-background-hero .service-screen-hero-copy .hero-actions{margin-top:14px}
+.service-background-hero .service-screen-hero-note{margin-top:10px}
+@media(max-width:780px){
+ .service-background-hero .service-screen-hero-copy h1{font-size:clamp(1.8rem,6.5vw,2.65rem)}
+ .service-background-hero .service-screen-hero-note{font-size:.78rem}
+}
