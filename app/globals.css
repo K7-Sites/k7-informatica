@@ -92,3 +92,10 @@
 .contact-modal-panel{width:min(100%,460px)}
 .contact-modal-panel .contact-lead-form{width:100%}
 .contact-lead-form .button{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+
+/* Seletor de serviços na navegação */
+.nav-services-select-wrap{display:flex;align-items:center;min-width:0}
+.nav-services-select{max-width:210px;width:100%;padding:9px 27px 9px 10px;border:1px solid rgba(151,180,215,.25);border-radius:9px;background:#101a2c;color:#e8efff;font:inherit;font-size:13px;cursor:pointer;outline-offset:3px}
+.nav-services-select:hover,.nav-services-select:focus-visible{border-color:#63a6ff}
+.nav-services-select option{background:#101a2c;color:#fff}
+@media(max-width:780px){.nav-services-select-wrap{width:100%}.nav-services-select{max-width:none;min-height:46px;font-size:14px}}
