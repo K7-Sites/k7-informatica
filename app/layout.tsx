@@ -6,8 +6,8 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Manutenção de Notebooks e Computadores na Zona Norte de SP | K7 Informática",
-  description: "Assistência técnica de notebooks e computadores no Tucuruvi e Zona Norte de São Paulo. Troca de SSD, memória, tela, formatação, limpeza, upgrades e suporte técnico.",
+  title: "Manutenção de Notebook no Tucuruvi | K7 Informática",
+  description: "Manutenção de notebooks e computadores no Tucuruvi e Zona Norte de SP. Troca de tela, SSD, limpeza e formatação. Solicite orçamento na K7 Informática.",
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
