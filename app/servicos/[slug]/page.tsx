@@ -68,6 +68,29 @@ export default async function ServicePage({params}:Props){
   </div>
  </section>
 ) : (
+ <section className="section container service-screen-details" aria-labelledby="service-details-title">
+  <div className="service-screen-details-grid">
+   <div className="service-screen-details-visual">
+    <Image src={serviceHeroImages[slug].replace(/\.png$/, "-service.png")} alt={`Ilustração do serviço de ${s.title.toLowerCase()}`} width={1200} height={900} sizes="(max-width: 780px) 100vw, 48vw" />
+   </div>
+   <div className="service-screen-details-copy">
+    <p className="eyebrow">ASSISTÊNCIA TÉCNICA • ZONA NORTE DE SP</p>
+    <h2 id="service-details-title">{s.title} em São Paulo</h2>
+    <p>{s.description} Fale com a K7 Informática pelo WhatsApp para receber orientação inicial e solicitar seu orçamento.</p>
+    <ul className="service-screen-details-list">
+     {[
+      ["fa-magnifying-glass", "Avaliação técnica", s.benefits[0]],
+      ["fa-screwdriver-wrench", "Serviço especializado", s.benefits[1]],
+      ["fa-circle-check", "Solução adequada", s.benefits[2]],
+      ["fa-shield-halved", "Orçamento transparente", "O procedimento e os valores são informados após avaliação, antes de iniciar o serviço."]
+     ].map(([icon,title,description])=><li key={title}><i className={`fa-solid ${icon}`} aria-hidden="true"/><div><strong>{title}</strong><span>{description}</span></div></li>)}
+    </ul>
+    <WhatsAppLink className="button" href={whatsappUrl(`Olá, gostaria de solicitar um orçamento para ${s.title.toLowerCase()}.`)} location="service-page">Solicitar orçamento <i className="fa-brands fa-whatsapp"/></WhatsAppLink>
+   </div>
+  </div>
+ </section>
+)}
+{false && (
  <section className="section container service-intro"><div className="section-head"><p className="eyebrow">ASSISTÊNCIA TÉCNICA • ZONA NORTE DE SP</p><h2>{s.title} no Tucuruvi e Zona Norte de São Paulo</h2><p>{s.description} Saiba como identificar os sinais do problema, quais cuidados tomar e quando solicitar uma avaliação técnica.</p></div><div className="center"><WhatsAppLink className="button" href={whatsappUrl(`Olá, gostaria de avaliar o serviço de ${s.title}.`)} location="service-page">Solicitar avaliação <i className="fa-brands fa-whatsapp"/></WhatsAppLink></div></section>
 )}
  <section className="section container"><div className="section-head"><p className="eyebrow">COMO PODEMOS AJUDAR</p><h2>O que avaliamos neste serviço?</h2><p>Cada equipamento passa por análise individual antes de definirmos a solução e o orçamento.</p></div><div className="benefit-grid">{s.benefits.map((item,i)=><article key={item}><i className={`fa-solid ${["fa-magnifying-glass","fa-screwdriver-wrench","fa-circle-check"][i]}`}/><h3>{item}</h3><p>O procedimento depende do diagnóstico e das condições do equipamento.</p></article>)}</div></section>
