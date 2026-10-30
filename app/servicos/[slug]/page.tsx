@@ -29,6 +29,23 @@ const serviceHeroImages: Record<string,string> = {
   "instalacao-windows-linux-notebook-pc": "/images/servicos/instalacao-de-sistemas.png",
   "upgrade-placa-de-video-pc-gamer": "/images/servicos/upgrade-gpu.png"
 };
+const serviceDetailImages: Record<string,string> = {
+ "manutencao-de-notebook": "/images/servicos/manutencao-de-notebook-service.png",
+ "manutencao-de-pc-gamer": "/images/servicos/manutencao-upgrade-pc-gamer-service.png",
+ "suporte-remoto-para-computadores": "/images/servicos/suporte-remoto-notebook-computador-service.webp",
+ "troca-de-pasta-termica-notebook-pc": "/images/servicos/troca-depasta-termica-notebook-service.png",
+ "troca-de-tela-de-notebook": "/images/servicos/troca-de-tela-notebook-service.png",
+ "instalacao-de-ssd-notebook-computador": "/images/servicos/instalacao-de-ssd-notebook-computador-service.png",
+ "upgrade-memoria-ram-notebook-pc": "/images/servicos/upgrade-memoria-ram-service.webp",
+ "formatacao-de-notebook-e-computador": "/images/servicos/formatacao-notebook-computador-service.webp",
+ "backup-de-arquivos-notebook-pc": "/images/servicos/backup-notebook-computador-service.webp",
+ "limpeza-interna-notebook-pc-gamer": "/images/servicos/limpeza-interna-notebook-pc-gamer-service.webp",
+ "remocao-de-virus-notebook-pc": "/images/servicos/remocao-de-virus-notebook-computador-service.webp",
+ "troca-de-bateria-de-notebook": "/images/servicos/troca-de-bateria-notebook-2-service.webp",
+ "reparo-de-dobradica-de-notebook": "/images/servicos/reparo-de-dobradica-notebook-service.webp",
+ "instalacao-windows-linux-notebook-pc": "/images/servicos/instalacao-windonws-notebook-service.webp",
+ "upgrade-placa-de-video-pc-gamer": "/images/servicos/upgrade-placa-de-video-pc-gamer-service.webp"
+};
 type Props = { params: Promise<{slug:string}> };
 export function generateStaticParams(){return services.map(({slug})=>({slug}));}
 export async function generateMetadata({params}:Props):Promise<Metadata>{
@@ -68,7 +85,27 @@ export default async function ServicePage({params}:Props){
   </div>
  </section>
 ) : (
- <section className="section container service-intro"><div className="section-head"><p className="eyebrow">ASSISTÊNCIA TÉCNICA • ZONA NORTE DE SP</p><h2>{s.title} no Tucuruvi e Zona Norte de São Paulo</h2><p>{s.description} Saiba como identificar os sinais do problema, quais cuidados tomar e quando solicitar uma avaliação técnica.</p></div><div className="center"><WhatsAppLink className="button" href={whatsappUrl(`Olá, gostaria de avaliar o serviço de ${s.title}.`)} location="service-page">Solicitar avaliação <i className="fa-brands fa-whatsapp"/></WhatsAppLink></div></section>
+ <section className="section container service-screen-details" aria-labelledby="service-details-title">
+  <div className="service-screen-details-grid">
+   <div className="service-screen-details-visual">
+    <Image src={serviceDetailImages[slug]} alt={`Ilustração do serviço de ${s.title.toLowerCase()}`} width={1200} height={900} sizes="(max-width: 780px) 100vw, 48vw" />
+   </div>
+   <div className="service-screen-details-copy">
+    <p className="eyebrow">ASSISTÊNCIA TÉCNICA • ZONA NORTE DE SP</p>
+    <h2 id="service-details-title">{s.title} em São Paulo</h2>
+    <p>{s.description} Fale com a K7 Informática pelo WhatsApp para receber orientação inicial e solicitar seu orçamento.</p>
+    <ul className="service-screen-details-list">
+     {[
+      ["fa-magnifying-glass", "Avaliação técnica", s.benefits[0]],
+      ["fa-screwdriver-wrench", "Serviço especializado", s.benefits[1]],
+      ["fa-circle-check", "Solução adequada", s.benefits[2]],
+      ["fa-shield-halved", "Orçamento transparente", "O procedimento e os valores são informados após avaliação, antes de iniciar o serviço."]
+     ].map(([icon,title,description])=><li key={title}><i className={`fa-solid ${icon}`} aria-hidden="true"/><div><strong>{title}</strong><span>{description}</span></div></li>)}
+    </ul>
+    <WhatsAppLink className="button" href={whatsappUrl(`Olá, gostaria de solicitar um orçamento para ${s.title.toLowerCase()}.`)} location="service-page">Solicitar orçamento <i className="fa-brands fa-whatsapp"/></WhatsAppLink>
+   </div>
+  </div>
+ </section>
 )}
  <section className="section container"><div className="section-head"><p className="eyebrow">COMO PODEMOS AJUDAR</p><h2>O que avaliamos neste serviço?</h2><p>Cada equipamento passa por análise individual antes de definirmos a solução e o orçamento.</p></div><div className="benefit-grid">{s.benefits.map((item,i)=><article key={item}><i className={`fa-solid ${["fa-magnifying-glass","fa-screwdriver-wrench","fa-circle-check"][i]}`}/><h3>{item}</h3><p>O procedimento depende do diagnóstico e das condições do equipamento.</p></article>)}</div></section>
  <section className="section container"><div className="section-head"><p className="eyebrow">ENTENDA O PROBLEMA</p><h2>Possíveis causas e sinais de atenção</h2><p>{s.causes}</p></div><div className="benefit-grid"><article><i className="fa-solid fa-circle-exclamation"/><h3>O que pode estar acontecendo?</h3><p>{s.causes}</p></article><article><i className="fa-solid fa-magnifying-glass"/><h3>Como identificamos a causa?</h3><p>{s.diagnosis}</p></article><article><i className="fa-solid fa-shield-halved"/><h3>Cuidados antes do reparo</h3><p>{s.care}</p></article></div></section>
