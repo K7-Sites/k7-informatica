@@ -51,7 +51,7 @@ export default async function ServicePage({params}:Props){
  <section className="section container service-screen-details" aria-labelledby="screen-details-title">
   <div className="service-screen-details-grid">
    <div className="service-screen-details-visual">
-    <Image src="/images/servicos/troca-de-tela-notebook.png" alt="Notebook com tela danificada e painel de reposição para troca de tela" width={1200} height={900} sizes="(max-width: 780px) 100vw, 48vw" />
+    <Image src="/images/servicos/troca-de-tela-notebook-service.png" alt="Notebook com tela danificada e painel de reposição para troca de tela" width={1200} height={900} sizes="(max-width: 780px) 100vw, 48vw" />
    </div>
    <div className="service-screen-details-copy">
     <p className="eyebrow">REPARO DE NOTEBOOKS • SÃO PAULO</p>
