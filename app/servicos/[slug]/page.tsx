@@ -29,6 +29,23 @@ const serviceHeroImages: Record<string,string> = {
   "instalacao-windows-linux-notebook-pc": "/images/servicos/instalacao-de-sistemas.png",
   "upgrade-placa-de-video-pc-gamer": "/images/servicos/upgrade-gpu.png"
 };
+const serviceDetailImages: Record<string,string> = {
+ "manutencao-de-notebook": "/images/servicos/manutencao-de-notebook-service.png",
+ "manutencao-de-pc-gamer": "/images/servicos/manutencao-upgrade-pc-gamer-service.png",
+ "suporte-remoto-para-computadores": "/images/servicos/suporte-remoto-notebook-computador-service.webp",
+ "troca-de-pasta-termica-notebook-pc": serviceHeroImages["troca-de-pasta-termica-notebook-pc"],
+ "troca-de-tela-de-notebook": "/images/servicos/troca-de-tela-notebook-service.png",
+ "instalacao-de-ssd-notebook-computador": serviceHeroImages["instalacao-de-ssd-notebook-computador"],
+ "upgrade-memoria-ram-notebook-pc": "/images/servicos/upgrade-memoria-ram-service.webp",
+ "formatacao-de-notebook-e-computador": "/images/servicos/formatacao-notebook-computador-service.webp",
+ "backup-de-arquivos-notebook-pc": "/images/servicos/backup-notebook-computador-service.webp",
+ "limpeza-interna-notebook-pc-gamer": "/images/servicos/limpeza-interna-notebook-pc-gamer-service.webp",
+ "remocao-de-virus-notebook-pc": "/images/servicos/remocao-de-virus-notebook-computador-service.webp",
+ "troca-de-bateria-de-notebook": "/images/servicos/troca-de-bateria-notebook-2-service.webp",
+ "reparo-de-dobradica-de-notebook": "/images/servicos/reparo-de-dobradica-notebook-service.webp",
+ "instalacao-windows-linux-notebook-pc": "/images/servicos/instalacao-windonws-notebook-service.webp",
+ "upgrade-placa-de-video-pc-gamer": "/images/servicos/upgrade-placa-de-video-pc-gamer-service.webp"
+};
 type Props = { params: Promise<{slug:string}> };
 export function generateStaticParams(){return services.map(({slug})=>({slug}));}
 export async function generateMetadata({params}:Props):Promise<Metadata>{
@@ -71,7 +88,7 @@ export default async function ServicePage({params}:Props){
  <section className="section container service-screen-details" aria-labelledby="service-details-title">
   <div className="service-screen-details-grid">
    <div className="service-screen-details-visual">
-    <Image src={serviceHeroImages[slug].replace(/\.png$/, "-service.png")} alt={`Ilustração do serviço de ${s.title.toLowerCase()}`} width={1200} height={900} sizes="(max-width: 780px) 100vw, 48vw" />
+    <Image src={serviceDetailImages[slug]} alt={`Ilustração do serviço de ${s.title.toLowerCase()}`} width={1200} height={900} sizes="(max-width: 780px) 100vw, 48vw" />
    </div>
    <div className="service-screen-details-copy">
     <p className="eyebrow">ASSISTÊNCIA TÉCNICA • ZONA NORTE DE SP</p>
