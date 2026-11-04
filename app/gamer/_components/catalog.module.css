@@ -57,3 +57,12 @@
 @media(max-width:480px){.nav button{font-size:10px}}
 
 .cardImage img{object-fit:contain}
+
+/* Keep the product centered while only the details column scrolls. */
+.dialog[open]{height:min(680px,calc(100dvh - 32px));overflow:hidden;grid-template-rows:minmax(0,1fr)}
+.detailsImage{height:100%;min-height:0;align-items:center;justify-content:center}
+.detailsImage img{max-width:100%;max-height:calc(100% - 42px);height:auto;object-fit:contain;min-height:0}
+.detailsImage small{flex-shrink:0}
+.detailsBody{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.productDescription{white-space:pre-line;overflow-wrap:anywhere;margin:24px 0 0;padding-top:20px;border-top:1px solid #e1e6ee}
+@media(max-width:760px){.dialog[open]{grid-template-rows:minmax(130px,32%) minmax(0,1fr)}.detailsImage{padding:16px 40px}.detailsImage img{max-height:calc(100% - 28px)}.detailsBody{padding-top:20px}}

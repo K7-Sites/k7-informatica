@@ -23,10 +23,11 @@ function ProductDetails({ product, demo, close }: { product: GamerProduct; demo:
   return <dialog ref={dialog} className={s.dialog} onCancel={close} onClick={e => { if (e.target === e.currentTarget) close(); }} aria-labelledby="gamer-product-title">
     <button className={s.close} onClick={close} aria-label="Fechar detalhes"><Icon name="xmark" /></button>
     <div className={s.detailsImage}><Image src={product.image} unoptimized={product.image.startsWith("https://")} alt={product.imageAlt} width={720} height={480} /><small>{demo ? "Imagem ilustrativa · exemplo de layout" : "Fotos do produto"}</small></div>
-    <div className={s.detailsBody}><span className={s.kicker}>{demo ? "MODELO DEMONSTRATIVO" : "K7 INFORMÁTICA / PC GAMER"}</span><h2 id="gamer-product-title">{product.name}</h2><p>{product.description}</p>
+    <div className={s.detailsBody}><span className={s.kicker}>{demo ? "MODELO DEMONSTRATIVO" : "K7 INFORMÁTICA / PC GAMER"}</span><h2 id="gamer-product-title">{product.name}</h2>
       <Specs product={product} />
       <strong className={s.price}>{demo ? "Exemplo sem preço de venda" : product.price !== undefined ? money(product.price) : "Sob consulta"}</strong>
       {!demo && <button type="button" className={s.primary} onClick={() => { close(); openContact(`Gostaria de um orçamento para o ${product.name} (código ${product.id}). Configuração: ${product.processor}, ${product.graphics}, ${product.memoryGB} GB RAM, ${product.storage}.`); }}><i className="fa-brands fa-whatsapp" aria-hidden="true" /> Solicitar orçamento</button>}
+      {product.description && <p className={s.productDescription}>{product.description}</p>}
       {demo && <p className={s.demoText}>Este exemplo não é um produto à venda. Os PCs reais aparecerão após o cadastro.</p>}
     </div>
   </dialog>;
