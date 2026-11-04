@@ -41,3 +41,17 @@
 .slide img{display:block;width:100%;height:auto;object-fit:contain}
 
 .setupLine[data-line="moba"] .setupMedia img,.setupLine[data-line="home"] .setupMedia img{transform:scale(.88);transform-origin:center}
+
+/* Contact actions always open the lead form before contacting the team. */
+.headerContact,.nav button,.filterHelp button,.footer button{border:0;background:transparent;color:inherit;padding:0;text-align:left;cursor:pointer;font:inherit}
+.nav button{text-transform:uppercase;font-size:13px;color:#c2ccdf;display:flex;align-items:center;gap:10px}
+.filterHelp button{font-size:11px;color:#d8dde6;display:flex;align-items:center;gap:10px}
+.footer button{font-size:12px;color:#aebbd0}
+.gamerContact :global(.contact-modal-panel){background:#16181d;border-color:#565c66;box-shadow:0 24px 90px #0009;color:#fff}
+.gamerContact :global(.contact-lead-form){background:#16181d;color:#fff;gap:14px}
+.gamerContact :global(.contact-lead-form) input,.gamerContact :global(.contact-lead-form) select,.gamerContact :global(.contact-lead-form) textarea{background:#24272e;color:#fff;border-color:#565c66;font-size:16px}
+.gamerContact :global(.contact-lead-form) input:focus,.gamerContact :global(.contact-lead-form) select:focus,.gamerContact :global(.contact-lead-form) textarea:focus{outline:2px solid #d8dde6}
+.gamerContact :global(.contact-lead-form) textarea{resize:vertical;min-height:95px}
+.gamerContact :global(.contact-lead-form) :global(.button){background:linear-gradient(135deg,#f4f5f7,#d8dde6 48%,#b9c1ce);color:#17191e;border-color:#c5ccd6;box-shadow:none}
+@media(max-width:760px){.nav button{font-size:11px}.headerContact{font-size:12px}}
+@media(max-width:480px){.nav button{font-size:10px}}

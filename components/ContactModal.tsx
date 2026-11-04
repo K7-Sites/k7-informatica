@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { ContactForm } from "@/components/ContactForm";
-export function ContactModal() {
+export function ContactModal({ variant = "default" }: { variant?: "default" | "gamer" }) {
+  const [initialMessage, setInitialMessage] = useState("");
   const [open, setOpen] = useState(false);
   const closeButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const openModal = () => setOpen(true);
+    const openModal = (event: Event) => { setInitialMessage((event as CustomEvent<{ message?: string }>).detail?.message || ""); setOpen(true); };
     window.addEventListener("k7:open-contact", openModal);
     return () => window.removeEventListener("k7:open-contact", openModal);
   }, []);
@@ -19,7 +20,7 @@ export function ContactModal() {
       if (event.key === "Escape") setOpen(false);
       if (event.key === "Tab") {
         const panel = document.querySelector<HTMLElement>(".contact-modal-panel");
-        const items = panel?.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), select:not([disabled])');
+        const items = panel?.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])');
         if (!items?.length) return;
         const first = items[0], last = items[items.length - 1];
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -33,7 +34,7 @@ export function ContactModal() {
   return <div className="contact-modal-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) setOpen(false); }}>
     <div className="contact-modal-panel" role="dialog" aria-modal="true" aria-label="Solicitar contato">
       <button ref={closeButton} className="contact-modal-close" type="button" aria-label="Fechar formulário" onClick={() => setOpen(false)}>×</button>
-      <ContactForm onSuccess={() => setOpen(false)} />
+      <ContactForm variant={variant} initialMessage={initialMessage} onSuccess={() => setOpen(false)} />
     </div>
   </div>;
 }

@@ -30,9 +30,13 @@ export async function POST(request: Request) {
     "/servicos/instalacao-windows-linux-notebook-pc": "Instalação de Windows ou Linux",
     "/servicos/upgrade-placa-de-video-pc-gamer": "Upgrade de placa de vídeo",
   };
-  const pageName = landingPath === "/" ? "Página inicial" : servicePages[landingPath] || "Outra página";
+  const gamer = landingPath === "/gamer/pc-gamer";
+  const email = typeof input.email === "string" ? input.email.trim() : "";
+  const message = typeof input.message === "string" ? input.message.trim() : "";
+  const allowedServices = gamer ? ["", "Personalizar PC Gamer", "Comprar PC Gamer", "Assistência técnica", "Outro"] : ["Notebook", "Computador", "Outro"];
+  const pageName = gamer ? "Catálogo PC Gamer" : landingPath === "/" ? "Página inicial" : servicePages[landingPath] || "Outra página";
   const pageUrl = `https://www.k7informatica.com${landingPath.startsWith("/") ? landingPath : "/"}`;
-  if (name.length < 2 || name.length > 255 || !/^(?:55)?[1-9][0-9]{9,10}$/.test(phone.replace(/\D/g, "")) || !["Notebook", "Computador", "Outro"].includes(service) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionId)) {
+  if (name.length < 2 || name.length > 255 || !/^(?:55)?[1-9][0-9]{9,10}$/.test(phone.replace(/\D/g, "")) || !allowedServices.includes(service) || (gamer && (email.length > 255 || (email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) || message.length > 2000)) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionId)) {
     return NextResponse.json({ message: "Confira nome, WhatsApp e mensagem." }, { status: 422 });
   }
   if (website) return NextResponse.json({ message: "Contato recebido." });
@@ -42,8 +46,8 @@ export async function POST(request: Request) {
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         name, phone, service: "outros", submission_id: submissionId,
-        origin: "k7-informatica", project_type: "Assistência técnica",
-        project_message: `Serviço solicitado: ${service}\nPágina de origem: ${pageName}\nURL de origem: ${pageUrl}`,
+        origin: "k7-informatica", project_type: gamer ? (service || "Outro") : "Assistência técnica",
+        project_message: `${gamer ? "Interesse solicitado" : "Serviço solicitado"}: ${service || "Não informado"}${gamer && email ? `\nE-mail: ${email}` : ""}${gamer && message ? `\nMensagem: ${message}` : ""}\nPágina de origem: ${pageName}\nURL de origem: ${pageUrl}`,
         utm_source: typeof input.utm_source === "string" ? input.utm_source.slice(0, 255) : undefined,
         utm_medium: typeof input.utm_medium === "string" ? input.utm_medium.slice(0, 255) : undefined,
         utm_campaign: typeof input.utm_campaign === "string" ? input.utm_campaign.slice(0, 255) : undefined,
