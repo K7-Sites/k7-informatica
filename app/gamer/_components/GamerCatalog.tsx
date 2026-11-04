@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { site, whatsappUrl } from "@/lib/site";
 import { demoProducts, type GamerProduct } from "../_data/products";
 import s from "./catalog.module.css";
+import { HeroSlider } from "./HeroSlider";
 
 const money = (value: number) => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 function Icon({ name }: { name: string }) { return <i className={`fa-solid fa-${name}`} aria-hidden="true" />; }
@@ -47,12 +48,12 @@ export function GamerCatalog({ products }: { products: GamerProduct[] }) {
   return <div className={s.catalog}>
     <a className={s.skip} href="#gamer-products">Ir para os produtos</a>
     <header className={s.header}><div className={s.headerInner}>
-      <Link href="/" aria-label="K7 Informática, página inicial" className={s.logo}><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={156} height={82} priority /><span>GAMER<span>PCs & configurações</span></span></Link>
+      <Link href="/" aria-label="K7 Informática, página inicial" className={s.logo}><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} priority /></Link>
       <form className={s.search} role="search" onSubmit={e => { e.preventDefault(); document.getElementById("gamer-products")?.scrollIntoView({ behavior: "smooth" }); }}><label className={s.srOnly} htmlFor="gamer-search">Buscar PCs por nome ou configuração</label><input id="gamer-search" type="search" placeholder="Encontre seu próximo PC Gamer" value={search} onChange={e => setSearch(e.target.value)} /><button aria-label="Buscar PCs"><Icon name="magnifying-glass" /></button></form>
       <a className={s.headerContact} href={whatsappUrl("Quero ajuda para escolher um PC Gamer.")} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-whatsapp" aria-hidden="true" /><span>Precisa de ajuda?<strong>Fale com a K7</strong></span></a>
     </div><nav className={s.nav} aria-label="Navegação gamer"><div><a href="#gamer-products" className={s.active}><Icon name="desktop" /> PCs Gamer</a><a href={whatsappUrl("Quero montar um PC Gamer personalizado.")} target="_blank" rel="noopener noreferrer">Monte seu PC</a><Link href="/">Assistência técnica <Icon name="arrow-up-right-from-square" /></Link><span>TECNOLOGIA QUE ACOMPANHA VOCÊ.</span></div></nav></header>
     <main>
-      <section className={s.hero} aria-labelledby="gamer-title"><Image src="/images/servicos/pc-gamer.png" alt="Gabinete gamer com iluminação azul, imagem ilustrativa" fill priority sizes="100vw" className={s.heroImage} /><div className={s.heroInner}><p className={s.kicker}>K7 INFORMÁTICA • LINHA GAMER</p><h1 id="gamer-title">Seu próximo setup<br />começa <em>aqui.</em></h1><p>Encontre o PC para o seu jeito de jogar.<br />Compare configurações e fale com quem entende.</p><a href="#gamer-products" className={s.primary}>Explorar PCs Gamer <Icon name="arrow-down" /></a><small>Imagem ilustrativa</small></div></section>
+      <HeroSlider />
       <div className={s.benefits}>{[["microchip", "Configuração em detalhes", "Saiba o que tem no seu PC"], ["comments", "Atendimento direto", "Tire suas dúvidas com a K7"], ["sliders", "Do seu jeito", "Consulte uma montagem personalizada"]].map(([icon, title, text]) => <div key={title}><Icon name={icon} /><span><strong>{title}</strong><small>{text}</small></span></div>)}</div>
       <section id="gamer-products" className={s.productsSection} aria-labelledby="gamer-catalog-title"><div className={s.breadcrumb}><Link href="/">K7 Informática</Link><span>/</span><span>Gamer</span><span>/</span><strong>PC Gamer</strong></div>
         <div className={s.sectionHeading}><div><p className={s.kicker}>ESCOLHA SUA CONFIGURAÇÃO</p><h2 id="gamer-catalog-title">PCs Gamer</h2></div><p>Mais clareza para escolher.<br />Mais possibilidades para jogar.</p></div>
