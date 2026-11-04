@@ -1,0 +1,10 @@
+.page{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:radial-gradient(ellipse at 50% 20%,#30343d66,transparent 62%),#111215;color:#f4f5f7;text-align:center;color-scheme:dark}
+.logo{display:block;margin-bottom:22px}.logo img{display:block;width:180px;height:auto;object-fit:contain}
+.card{width:min(100%,620px);padding:clamp(26px,5vw,48px);background:linear-gradient(145deg,#24272e,#16181d);border:1px solid #d8dde633;border-radius:20px;box-shadow:0 25px 75px #0004}
+.check{width:68px;height:68px;display:grid;place-items:center;margin:0 auto 24px;border:1px solid #f4f5f7;border-radius:50%;background:linear-gradient(135deg,#f4f5f7,#b9c1ce);color:#17191e;font-size:30px;box-shadow:0 0 35px #d8dde612}
+.eyebrow{font-size:10px;letter-spacing:.16em;font-weight:700;color:#b9c1ce;margin:0 0 12px}
+.card h1{font-size:clamp(29px,5vw,42px);line-height:1.12;letter-spacing:-.035em;margin:0 0 16px}
+.lead{font-size:18px;margin:0 0 12px;color:#e4e7ec}.description{font-size:14px;line-height:1.7;color:#b9c1ce;margin:0 auto 26px;max-width:440px}
+.next{display:flex;align-items:center;gap:15px;padding:18px;border:1px solid #d8dde626;border-radius:10px;background:#d8dde609;text-align:left;margin-bottom:26px}.next>i{font-size:29px;color:#d8dde6}.next strong{font-size:13px;display:block;margin-bottom:4px}.next span{font-size:12px;color:#b9c1ce;display:block;line-height:1.5}
+.button{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 20px;min-height:48px;border:1px solid #c5ccd6;border-radius:8px;background:linear-gradient(135deg,#f4f5f7,#d8dde6 48%,#b9c1ce);color:#17191e;font-size:14px;font-weight:700}.button:hover{background:#f4f5f7}.secondary{display:inline-block;font-size:12px;color:#c5ccd6;margin-top:20px}.secondary i{margin-left:6px;font-size:10px}.footer{font-size:11px;color:#929ba8;margin:24px 0 0}.page a:focus-visible{outline:3px solid #d8dde6;outline-offset:5px}
+@media(max-width:480px){.page{padding:22px 16px}.logo{margin-bottom:18px}.logo img{width:150px}.card{padding:28px 20px}.lead{font-size:16px}.next{padding:15px;gap:12px}.footer{font-size:10px}}

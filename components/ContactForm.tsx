@@ -46,7 +46,7 @@ export function ContactForm({ onSuccess, variant = "default", initialMessage = "
       if (!response.ok) throw new Error(result.message || "Falha no envio.");
       pendingId.current = null;
       onSuccess?.();
-      router.push("/mensagem-enviada-com-sucesso");
+      router.push(gamer ? "/gamer/obrigado" : "/mensagem-enviada-com-sucesso");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Não foi possível enviar.");
     } finally { setBusy(false); }
