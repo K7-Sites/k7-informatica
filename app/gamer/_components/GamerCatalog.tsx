@@ -31,7 +31,7 @@ function ProductDetails({ product, demo, close }: { product: GamerProduct; demo:
       <Specs product={product} />
       <WarrantyBadge />
       <strong className={s.price}>{demo ? "Exemplo sem preço de venda" : product.price !== undefined ? money(product.price) : "Sob consulta"}</strong>
-      {!demo && <button type="button" className={s.primary} onClick={() => { close(); openContact(`Gostaria de um orçamento para o ${product.name} (código ${product.id}). Configuração: ${product.processor}, ${product.graphics}, ${product.memoryGB} GB RAM, ${product.storage}.`); }}><i className="fa-brands fa-whatsapp" aria-hidden="true" /> Solicitar orçamento</button>}
+      {!demo && <button type="button" className={`${s.primary} ${s.quoteButton}`} onClick={() => { close(); openContact(`Gostaria de um orçamento para o ${product.name} (código ${product.id}). Configuração: ${product.processor}, ${product.graphics}, ${product.memoryGB} GB RAM, ${product.storage}.`); }}><i className="fa-brands fa-whatsapp" aria-hidden="true" /> Solicitar orçamento</button>}
       {product.description && <p className={s.productDescription}>{product.description}</p>}
       {demo && <p className={s.demoText}>Este exemplo não é um produto à venda. Os PCs reais aparecerão após o cadastro.</p>}
     </div>
@@ -60,14 +60,14 @@ export function GamerCatalog({ products, catalogUnavailable = false }: { product
   return <div className={s.catalog}>
     <a className={s.skip} href="#gamer-products">Ir para os produtos</a>
     <header className={s.header}><div className={s.headerInner}>
-      <Link href="/" aria-label="K7 Informática, página inicial" className={s.logo}><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} priority /></Link>
+      <Link href="/gamer/pc-gamer" aria-label="K7 Informática, PCs Gamer" className={s.logo}><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} priority /></Link>
       <form className={s.search} role="search" onSubmit={e => { e.preventDefault(); document.getElementById("gamer-products")?.scrollIntoView({ behavior: "smooth" }); }}><label className={s.srOnly} htmlFor="gamer-search">Buscar PCs por nome ou configuração</label><input id="gamer-search" type="search" placeholder="Encontre seu próximo PC Gamer" value={search} onChange={e => setSearch(e.target.value)} /><button aria-label="Buscar PCs"><Icon name="magnifying-glass" /></button></form>
       <button type="button" className={s.headerContact} onClick={() => openContact("Quero ajuda para escolher um PC Gamer.")}><i className="fa-brands fa-whatsapp" aria-hidden="true" /><span>Precisa de ajuda?<strong>Fale com a K7</strong></span></button>
     </div><nav className={s.nav} aria-label="Navegação gamer"><div><a href="#gamer-products" className={s.active}><Icon name="desktop" /> PCs Gamer</a><button type="button" onClick={() => openContact("Quero montar um PC Gamer personalizado.")}>Monte seu PC</button><Link href="/" target="_blank" rel="noopener noreferrer">Assistência técnica <Icon name="arrow-up-right-from-square" /></Link><WarrantyBadge /><span>TECNOLOGIA QUE ACOMPANHA VOCÊ.</span></div></nav></header>
     <main>
       <HeroSlider />
       <SetupLines />
-      <section id="gamer-products" className={s.productsSection} aria-labelledby="gamer-catalog-title"><div className={s.breadcrumb}><Link href="/">K7 Informática</Link><span>/</span><span>Gamer</span><span>/</span><strong>PC Gamer</strong></div>
+      <section id="gamer-products" className={s.productsSection} aria-labelledby="gamer-catalog-title"><div className={s.breadcrumb}><Link href="/gamer/pc-gamer">K7 Informática</Link><span>/</span><span>Gamer</span><span>/</span><strong>PC Gamer</strong></div>
         <div className={s.sectionHeading}><div className={s.headingWithWarranty}><div><p className={s.kicker}>ESCOLHA SUA CONFIGURAÇÃO</p><h2 id="gamer-catalog-title">PCs Gamer</h2></div><WarrantyBadge /></div><p>Mais clareza para escolher.<br />Mais possibilidades para jogar.</p></div>
         {demo && <div className={s.notice} role="status"><Icon name="circle-info" /><p><strong>Prévia demonstrativa do catálogo.</strong> Fotos e configurações ilustrativas, sem ofertas ou estoque real.</p><button onClick={switchDemo}>Sair da prévia</button></div>}
         <div className={s.toolbar}><span role="status" aria-live="polite">{results.length} {results.length === 1 ? "PC encontrado" : "PCs encontrados"}{demo ? " na prévia" : ""}</span><button className={s.filterToggle} aria-expanded={filtersOpen} aria-controls="gamer-filters" onClick={() => setFiltersOpen(!filtersOpen)}><Icon name="sliders" /> Filtros</button><label>Ordenar por <select value={order} onChange={e => setOrder(e.target.value)}><option value="name">Nome</option><option value="asc">Menor preço</option><option value="desc">Maior preço</option></select></label></div>
@@ -79,9 +79,9 @@ export function GamerCatalog({ products, catalogUnavailable = false }: { product
     </main>
     <footer className={s.footer}>
       <div className={s.footerColumns}>
-        <div className={s.footerBrand}><Link href="/" aria-label="K7 Informática, página inicial"><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} /></Link><p>Seu setup começa com uma boa escolha.</p><Link href="/">Voltar ao site principal <Icon name="arrow-right" /></Link></div>
+        <div className={s.footerBrand}><Link href="/gamer/pc-gamer" aria-label="K7 Informática, PCs Gamer"><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} /></Link><p>Seu setup começa com uma boa escolha.</p></div>
         <div className={s.footerPayments}><h3>Pagamento</h3><div className={s.paymentLogos}>{[["pix", "Pix"], ["mercado-pago", "Mercado Pago"], ["mastercard", "Mastercard"], ["visa", "Visa"], ["boleto", "Boleto"]].map(([file, label]) => <span className={s.paymentLogo} key={file} title={label}><Image src={`/images/gamer/payments/${file}.svg`} alt={label} width={80} height={40} /></span>)}</div></div>
-        <div className={s.footerSecurity}><h3>Segurança</h3><a className={s.googleSecurity} href="https://transparencyreport.google.com/safe-browsing/search?url=www.k7informatica.com&hl=pt_BR" target="_blank" rel="noopener noreferrer"><Image src="/images/gamer/payments/google.svg" alt="Google" width={90} height={30} /><span><Icon name="shield-halved" /> Navegação segura</span><small>Consultar status do site</small></a></div>
+        <div className={s.footerSecurity}><h3>Segurança</h3><div className={s.googleSecurity}><Image src="/images/gamer/payments/google.svg" alt="Google" width={90} height={30} /><span><Icon name="shield-halved" /> Navegação segura</span></div></div>
         <div className={s.footerContact}><h3>Atendimento</h3><button type="button" onClick={() => openContact("Gostaria de falar sobre um PC Gamer.")}>{site.phone}</button><button type="button" onClick={() => openContact()}>{site.email}</button></div>
       </div>
       <div className={s.footerBottom}><p>SOMOS E-COMMERCE - NÃO TEMOS ATENDIMENTO LOCAL</p><small>© {new Date().getFullYear()} K7 Informática.</small></div>
