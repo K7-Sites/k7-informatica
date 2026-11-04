@@ -55,7 +55,6 @@ export function GamerCatalog({ products }: { products: GamerProduct[] }) {
     </div><nav className={s.nav} aria-label="Navegação gamer"><div><a href="#gamer-products" className={s.active}><Icon name="desktop" /> PCs Gamer</a><a href={whatsappUrl("Quero montar um PC Gamer personalizado.")} target="_blank" rel="noopener noreferrer">Monte seu PC</a><Link href="/">Assistência técnica <Icon name="arrow-up-right-from-square" /></Link><span>TECNOLOGIA QUE ACOMPANHA VOCÊ.</span></div></nav></header>
     <main>
       <HeroSlider />
-      <div className={s.benefits}>{[["microchip", "Configuração em detalhes", "Saiba o que tem no seu PC"], ["comments", "Atendimento direto", "Tire suas dúvidas com a K7"], ["sliders", "Do seu jeito", "Consulte uma montagem personalizada"]].map(([icon, title, text]) => <div key={title}><Icon name={icon} /><span><strong>{title}</strong><small>{text}</small></span></div>)}</div>
       <SetupLines />
       <section id="gamer-products" className={s.productsSection} aria-labelledby="gamer-catalog-title"><div className={s.breadcrumb}><Link href="/">K7 Informática</Link><span>/</span><span>Gamer</span><span>/</span><strong>PC Gamer</strong></div>
         <div className={s.sectionHeading}><div><p className={s.kicker}>ESCOLHA SUA CONFIGURAÇÃO</p><h2 id="gamer-catalog-title">PCs Gamer</h2></div><p>Mais clareza para escolher.<br />Mais possibilidades para jogar.</p></div>
