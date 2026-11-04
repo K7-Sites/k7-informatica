@@ -77,7 +77,15 @@ export function GamerCatalog({ products, catalogUnavailable = false }: { product
         </div></div>
       </section>
     </main>
-    <footer className={s.footer}><div><strong>K7 INFORMÁTICA <span>/ GAMER</span></strong><p>Seu setup começa com uma boa escolha.</p><Link href="/">Voltar ao site principal <Icon name="arrow-right" /></Link></div><div><button type="button" onClick={() => openContact("Gostaria de falar sobre um PC Gamer.")}>{site.phone}</button><button type="button" onClick={() => openContact()}>{site.email}</button><small>© {new Date().getFullYear()} K7 Informática.</small></div></footer>
+    <footer className={s.footer}>
+      <div className={s.footerColumns}>
+        <div className={s.footerBrand}><Link href="/" aria-label="K7 Informática, página inicial"><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} /></Link><p>Seu setup começa com uma boa escolha.</p><Link href="/">Voltar ao site principal <Icon name="arrow-right" /></Link></div>
+        <div className={s.footerPayments}><h3>Pagamento</h3><div className={s.paymentLogos}>{[["pix", "Pix"], ["mercado-pago", "Mercado Pago"], ["mastercard", "Mastercard"], ["visa", "Visa"], ["boleto", "Boleto"]].map(([file, label]) => <span className={s.paymentLogo} key={file} title={label}><Image src={`/images/gamer/payments/${file}.svg`} alt={label} width={80} height={40} /></span>)}</div></div>
+        <div className={s.footerSecurity}><h3>Segurança</h3><a className={s.googleSecurity} href="https://transparencyreport.google.com/safe-browsing/search?url=www.k7informatica.com&hl=pt_BR" target="_blank" rel="noopener noreferrer"><Image src="/images/gamer/payments/google.svg" alt="Google" width={90} height={30} /><span><Icon name="shield-halved" /> Navegação segura</span><small>Consultar status do site</small></a></div>
+        <div className={s.footerContact}><h3>Atendimento</h3><button type="button" onClick={() => openContact("Gostaria de falar sobre um PC Gamer.")}>{site.phone}</button><button type="button" onClick={() => openContact()}>{site.email}</button></div>
+      </div>
+      <div className={s.footerBottom}><p>SOMOS E-COMMERCE - NÃO TEMOS ATENDIMENTO LOCAL</p><small>© {new Date().getFullYear()} K7 Informática.</small></div>
+    </footer>
     <div className={s.gamerContact}><ContactModal variant="gamer" /></div>
     {selected && <ProductDetails product={selected} demo={demo} close={() => setSelected(null)} />}
   </div>;
