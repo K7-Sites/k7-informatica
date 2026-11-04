@@ -12,9 +12,7 @@ export type GamerProduct = {
   description: string;
 };
 
-// Cadastre apenas produtos reais e autorizados aqui. Valores em reais.
-// As imagens devem ficar em public/images/gamer e usar o caminho /images/gamer/arquivo.webp.
-export const products: GamerProduct[] = [];
+// Os produtos reais são cadastrados e publicados no módulo de PC Gamer do K7 Gestão.
 
 // Exemplos de interface: nunca são exibidos como estoque ou ofertas reais.
 export const demoProducts: GamerProduct[] = [

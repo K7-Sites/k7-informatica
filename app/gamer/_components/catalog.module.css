@@ -55,3 +55,5 @@
 .gamerContact :global(.contact-lead-form) :global(.button){background:linear-gradient(135deg,#f4f5f7,#d8dde6 48%,#b9c1ce);color:#17191e;border-color:#c5ccd6;box-shadow:none}
 @media(max-width:760px){.nav button{font-size:11px}.headerContact{font-size:12px}}
 @media(max-width:480px){.nav button{font-size:10px}}
+
+.cardImage img{object-fit:contain}
