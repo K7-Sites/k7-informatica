@@ -68,3 +68,5 @@
 @media(max-width:760px){.dialog[open]{grid-template-rows:minmax(130px,32%) minmax(0,1fr)}.detailsImage{padding:16px 40px}.detailsImage img{max-height:calc(100% - 28px)}.detailsBody{padding-top:20px}}
 
 .card .price{color:#15803d}
+
+.tag{background:#c2410c;color:#fff;box-shadow:0 3px 10px #c2410c30}
