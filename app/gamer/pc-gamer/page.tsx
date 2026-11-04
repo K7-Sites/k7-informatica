@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { GamerCatalog } from "../_components/GamerCatalog";
-import { products } from "../_data/products";
+import { getGamerCatalog } from "@/lib/gamer-catalog";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "PC Gamer | Catálogo K7 Informática",
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "PC Gamer | K7 Informática", description: "Conheça o catálogo de PCs Gamer da K7 Informática.", images: ["/images/servicos/pc-gamer.png"] },
 };
 
-export default function GamerPage() {
-  return <GamerCatalog products={products} />;
+export default async function GamerPage() {
+  const catalog = await getGamerCatalog();
+  return <GamerCatalog products={catalog.products} catalogUnavailable={!catalog.available} />;
 }
