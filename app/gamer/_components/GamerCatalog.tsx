@@ -7,6 +7,7 @@ import { site, whatsappUrl } from "@/lib/site";
 import { demoProducts, type GamerProduct } from "../_data/products";
 import s from "./catalog.module.css";
 import { HeroSlider } from "./HeroSlider";
+import { SetupLines } from "./SetupLines";
 
 const money = (value: number) => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 function Icon({ name }: { name: string }) { return <i className={`fa-solid fa-${name}`} aria-hidden="true" />; }
@@ -55,6 +56,7 @@ export function GamerCatalog({ products }: { products: GamerProduct[] }) {
     <main>
       <HeroSlider />
       <div className={s.benefits}>{[["microchip", "Configuração em detalhes", "Saiba o que tem no seu PC"], ["comments", "Atendimento direto", "Tire suas dúvidas com a K7"], ["sliders", "Do seu jeito", "Consulte uma montagem personalizada"]].map(([icon, title, text]) => <div key={title}><Icon name={icon} /><span><strong>{title}</strong><small>{text}</small></span></div>)}</div>
+      <SetupLines />
       <section id="gamer-products" className={s.productsSection} aria-labelledby="gamer-catalog-title"><div className={s.breadcrumb}><Link href="/">K7 Informática</Link><span>/</span><span>Gamer</span><span>/</span><strong>PC Gamer</strong></div>
         <div className={s.sectionHeading}><div><p className={s.kicker}>ESCOLHA SUA CONFIGURAÇÃO</p><h2 id="gamer-catalog-title">PCs Gamer</h2></div><p>Mais clareza para escolher.<br />Mais possibilidades para jogar.</p></div>
         {demo && <div className={s.notice} role="status"><Icon name="circle-info" /><p><strong>Prévia demonstrativa do catálogo.</strong> Fotos e configurações ilustrativas, sem ofertas ou estoque real.</p><button onClick={switchDemo}>Sair da prévia</button></div>}
