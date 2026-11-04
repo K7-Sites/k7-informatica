@@ -39,3 +39,5 @@
 .slide{position:absolute;inset:0}
 .slideActive{position:relative;inset:auto}
 .slide img{display:block;width:100%;height:auto;object-fit:contain}
+
+.setupLine[data-line="moba"] .setupMedia img,.setupLine[data-line="home"] .setupMedia img{transform:scale(.88);transform-origin:center}
