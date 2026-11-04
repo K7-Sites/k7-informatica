@@ -32,3 +32,10 @@
 @media(max-width:600px){.setupLines{grid-template-columns:1fr;gap:4px;max-width:440px}.setupLine{height:190px}.setupCopy p{font-size:13px}.setupCopy h2{font-size:30px}.setupCopy>span{font-size:12px}}
 
 .heroBannerImage{object-fit:contain;object-position:center;background:#000}
+
+/* Banner artwork determines the height; no fixed-height slideshow container. */
+.hero{aspect-ratio:auto;min-height:0;height:auto}
+.slides{position:relative;inset:auto;z-index:0;width:100%}
+.slide{position:absolute;inset:0}
+.slideActive{position:relative;inset:auto}
+.slide img{display:block;width:100%;height:auto;object-fit:contain}
