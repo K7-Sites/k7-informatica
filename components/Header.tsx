@@ -25,6 +25,7 @@ export function Header() {
       <a className="brand brand-logo" href="/" aria-label={`${site.name}, início`}><Image src="/images/logo-k7-informatica.svg" alt="Logo K7 Informática" width={471} height={267} priority sizes="(max-width: 780px) 142px, 176px" /></a>
       <nav className={`nav ${open ? "open" : ""}`} aria-label="Navegação principal">
         {nav.map(([label, href]) => <a key={href} href={`/${href}`} onClick={() => setOpen(false)}>{label}</a>)}
+        <a className="nav-gamer-link" href="/gamer/pc-gamer" onClick={() => setOpen(false)}><i className="fa-solid fa-desktop" aria-hidden="true" /> Comprar PC GAMER</a>
         <label className="nav-services-select-wrap"><span className="sr-only">Escolher serviço</span><select aria-label="Serviços da K7 Informática" className="nav-services-select" value={pathname.startsWith("/servicos/") ? pathname : ""} onChange={e => { if (e.target.value) { const destination = e.target.value; setOpen(false); if (pathname === destination) { document.documentElement.style.scrollBehavior = "auto"; window.scrollTo(0, 0); document.documentElement.style.removeProperty("scroll-behavior"); } else { window.location.assign(destination); } } }}><option value="">Serviços ▾</option>{services.map(service => <option key={service.slug} value={`/servicos/${service.slug}`}>{service.title}</option>)}</select></label>
         <WhatsAppLink className="button button-sm mobile-cta" href={whatsappUrl()} location="header">Falar no WhatsApp</WhatsAppLink>
       </nav>

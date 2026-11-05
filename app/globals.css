@@ -110,3 +110,5 @@
 .service-grid article>div:last-child{min-width:0}
 @media(max-width:780px){.home-service-feature-image{height:170px}.home-service-mini-image{flex-basis:84px;width:84px;height:84px}}
 @media(prefers-reduced-motion:reduce){.home-service-feature-image img,.home-service-mini-image img{transition:none}.featured-card:hover .home-service-feature-image img,.service-grid article:hover .home-service-mini-image img{transform:none}}
+
+.site-header .nav>a.nav-gamer-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;padding:9px 12px;border-radius:8px;border:1px solid #3d82ff;background:linear-gradient(135deg,#2474ff,#0d50d4);color:#fff;font-weight:700;box-shadow:0 4px 18px #1565ff30}.site-header .nav>a.nav-gamer-link:hover{background:#1565ff;color:#fff}.site-header .nav>a.nav-gamer-link:focus-visible{outline:2px solid #d8dde6;outline-offset:3px}@media(min-width:1101px){.site-header .nav{gap:15px}.site-header .header-inner{gap:20px}}
