@@ -5,9 +5,10 @@ import type { SyntheticEvent } from "react";
 type FullscreenVideoProps = {
   src: string;
   label: string;
+  poster?: string;
 };
 
-export function FullscreenVideo({ src, label }: FullscreenVideoProps) {
+export function FullscreenVideo({ src, label, poster }: FullscreenVideoProps) {
   const openFullscreen = (event: SyntheticEvent<HTMLVideoElement>) => {
     const video = event.currentTarget;
     if (document.fullscreenElement) return;
@@ -26,7 +27,7 @@ export function FullscreenVideo({ src, label }: FullscreenVideoProps) {
   };
 
   return (
-    <video controls preload="metadata" playsInline aria-label={label} onPlay={openFullscreen}>
+    <video poster={poster} controls preload="metadata" playsInline aria-label={label} onPlay={openFullscreen}>
       <source src={src} type="video/mp4" />
       Seu navegador não suporta vídeo.
     </video>
