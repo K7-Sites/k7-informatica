@@ -1,6 +1,7 @@
 export type CatalogProduct = {
   id:number; sku:string; name:string; slug:string; model:string|null; description:string|null;
   price:number|null; availability:"available"|"on_request"|"unavailable";
+  product_type?:"general"|"computer"; computer_specs?:{ram_gb:number;storage_type:string;storage_gb:number;processor:string;gpu:string}|null;
   category:{name:string;slug:string}; brand:{name:string;slug:string}|null;
   images:{url:string;alt:string}[];
 };
