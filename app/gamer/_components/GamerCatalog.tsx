@@ -52,7 +52,7 @@ function CatalogDetails({ product, close }: { product: CatalogProduct; close: ()
       <WarrantyBadge />
       <strong className={s.price}>{product.price !== null ? money(product.price) : "Sob consulta"}</strong>
       {product.availability !== "unavailable" ? <button type="button" className={`${s.primary} ${s.quoteButton}`} onClick={() => { close(); openContact(`Gostaria de consultar o produto ${product.name} (código ${product.sku}).`); }}><i className="fa-brands fa-whatsapp" aria-hidden="true" /> Solicitar orçamento</button> : <p>Produto temporariamente indisponível.</p>}
-      {product.description && <p className={s.productDescription}>{product.description}</p>}
+      {product.description && <div className={s.productDescription} dangerouslySetInnerHTML={{__html:product.description}} />}
     </div>
   </dialog>;
 }
