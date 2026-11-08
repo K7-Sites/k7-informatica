@@ -166,3 +166,6 @@
 .productGrid>.card .cardBottom{margin-top:auto;padding-top:16px}
 .productGrid>.card .cardBottom .viewProductButton{min-height:42px}
 @media(max-width:760px){.productGrid>.card .cardBody>.specs{column-gap:12px;row-gap:9px}}
+
+/* Keep the product CTA label and icon white in all interaction states. */
+.card .viewProductButton,.card .viewProductButton:hover,.card .viewProductButton:focus-visible,.card .viewProductButton:active,.card .viewProductButton i{color:#fff!important}
