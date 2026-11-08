@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import { GamerCatalog } from "../_components/GamerCatalog";
-import { getGamerCatalog } from "@/lib/gamer-catalog";
+import UnifiedProducts from "@/app/produtos/UnifiedProducts";
 
 export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
-  title: "PC Gamer | Catálogo K7 Informática",
-  description: "Explore o catálogo de PCs Gamer da K7 Informática. Confira fotos, processador, placa de vídeo, memória e armazenamento e solicite seu orçamento.",
+  title: "Produtos | K7 Informática",
+  description: "Explore todos os produtos K7 Informática: PCs Gamer, computadores, mouses, teclados, notebooks e acessórios. Filtre por categoria e consulte pelo WhatsApp.",
   alternates: { canonical: "/gamer/pc-gamer" },
-  openGraph: { title: "PC Gamer | K7 Informática", description: "Seu próximo setup começa aqui. Conheça o catálogo de PCs Gamer da K7.", url: "/gamer/pc-gamer", images: [{ url: "/images/servicos/pc-gamer.png", alt: "PC gamer com iluminação azul" }] },
-  twitter: { card: "summary_large_image", title: "PC Gamer | K7 Informática", description: "Conheça o catálogo de PCs Gamer da K7 Informática.", images: ["/images/servicos/pc-gamer.png"] },
+  openGraph: { title: "Produtos | K7 Informática", description: "Todos os produtos de informática em um só lugar.", url: "/gamer/pc-gamer" },
 };
 
-export default async function GamerPage() {
-  const catalog = await getGamerCatalog();
-  return <GamerCatalog products={catalog.products} catalogUnavailable={!catalog.available} />;
+export default function GamerPage({ searchParams }: { searchParams: Promise<Record<string,string|undefined>> }) {
+  return <UnifiedProducts searchParams={searchParams} basePath="/gamer/pc-gamer" />;
 }
