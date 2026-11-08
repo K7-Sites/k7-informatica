@@ -1,5 +1,6 @@
-import type {Metadata} from "next";
-import UnifiedProducts from "./UnifiedProducts";
-export const dynamic="force-dynamic";
-export const metadata:Metadata={title:"Produtos de Informática | K7 Informática",description:"Computadores, notebooks, teclados, mouses, fontes e acessórios.",alternates:{canonical:"/produtos"}};
-export default function ProductsPage({searchParams}:{searchParams:Promise<Record<string,string|undefined>>}){return <UnifiedProducts searchParams={searchParams}/>;}
+import { redirect } from "next/navigation";
+
+// O catálogo fica exclusivamente na home da loja gamer.
+export default function ProductsRedirect() {
+  redirect("/gamer/pc-gamer#\u0067amer-products");
+}
