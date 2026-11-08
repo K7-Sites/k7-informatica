@@ -85,3 +85,29 @@
 .detailsBody .quoteButton{background:#25d366;border-color:#25d366;color:#fff!important}.detailsBody .quoteButton:hover{background:#1da851;border-color:#1da851}.detailsBody .quoteButton:focus-visible{outline:3px solid #128c7e;outline-offset:3px}
 
 .headerBadges{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.headerBadges .warrantyBadge,.securePaymentBadge{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;border-radius:6px;color:#fff;font-size:12px;font-weight:700;line-height:1.3;white-space:nowrap;text-transform:uppercase}.securePaymentBadge{background:#15803d}.securePaymentBadge i{font-size:15px}.nav>div{column-gap:24px}@media(max-width:760px){.headerBadges{gap:8px}.headerBadges .warrantyBadge,.securePaymentBadge{font-size:11px;padding:7px 10px}}
+
+/* Catálogo gamer: filtros sempre visíveis e rolagem exclusiva dos PCs no desktop. */
+@media (min-width: 761px) {
+  .catalogGrid {
+    height: min(780px, calc(100dvh - 170px));
+    min-height: 420px;
+    align-items: stretch;
+  }
+  .filters {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .productGrid {
+    align-content: start;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+    padding: 2px 8px 12px 2px;
+  }
+}
