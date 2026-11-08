@@ -112,3 +112,16 @@
     padding: 0;
   }
 }
+
+/* Category hierarchy: clear, tappable navigation without changing the storefront layout. */
+.categoryFilter{border-top:1px solid #ffffff1a;margin-top:18px;padding-top:18px}
+.categoryFilter h4{margin:0 0 4px;font-size:13px;font-weight:700;color:#fff}
+.categoryFilter>p{font-size:11px;color:#a9b7ce;margin:0 0 14px}
+.categoryOptions{display:grid;gap:4px}
+.categoryOptions button{width:100%;display:flex;align-items:center;gap:9px;text-align:left;background:transparent;border:1px solid transparent;border-radius:7px;padding:10px;color:#d6dce7;font-size:12px;line-height:1.35;transition:background .15s,border-color .15s}
+.categoryOptions button:hover{background:#ffffff14}
+.categoryOptions button.categorySelected{background:#1565ff2b;border-color:#5292ff;color:#fff;font-weight:700}
+.categoryGroup{border-top:1px solid #ffffff14;padding-top:5px;margin-top:4px}
+.categoryOptions .categoryChild{padding-left:25px;color:#b5c1d3}
+.categoryOptions .categoryChild i{font-size:10px}
+@media(max-width:760px){.categoryOptions button{min-height:44px}}
