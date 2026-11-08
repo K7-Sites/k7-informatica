@@ -151,3 +151,18 @@
 @media(max-width:900px){.dialog[open]{grid-template-columns:minmax(0,42%) minmax(0,58%)}.detailsBody{padding:32px 25px}}
 @media(max-width:760px){.dialog[open]{width:calc(100vw - 20px);height:min(92dvh,880px);grid-template-columns:1fr;grid-template-rows:minmax(140px,34%) minmax(0,1fr)}.detailsImage{padding:18px 28px}.detailsBody{padding:22px 20px}.detailsBody .specs{grid-template-columns:repeat(2,minmax(0,1fr))}.richDescription{font-size:13px}}
 @media(max-width:480px){.detailsBody .specs{grid-template-columns:1fr}.productDescriptionSection{margin-top:20px}}
+
+/* Equal-height catalog cards: flexible technical specs, anchored price and CTA. */
+.productGrid{align-items:stretch}
+.productGrid>.card{display:flex;flex-direction:column;height:100%;min-height:0}
+.productGrid>.card .cardBody{display:flex;flex:1;flex-direction:column;min-width:0}
+.productGrid>.card .cardImage{flex-shrink:0}
+.productGrid>.card .cardBody>.specs{display:flex;flex-wrap:wrap;align-content:flex-start;align-items:flex-start;column-gap:14px;row-gap:10px;margin:0}
+.productGrid>.card .cardBody>.specs>div{display:flex;align-items:flex-start;gap:7px;flex:0 1 auto;min-width:0;max-width:100%}
+.productGrid>.card .cardBody>.specs>div>div{min-width:0}
+.productGrid>.card .cardBody>.specs i{flex-shrink:0;margin-top:3px}
+.productGrid>.card .cardBody>.specs dt{font-size:10px;line-height:1.3}
+.productGrid>.card .cardBody>.specs dd{font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.productGrid>.card .cardBottom{margin-top:auto;padding-top:16px}
+.productGrid>.card .cardBottom .viewProductButton{min-height:42px}
+@media(max-width:760px){.productGrid>.card .cardBody>.specs{column-gap:12px;row-gap:9px}}
