@@ -39,6 +39,24 @@ function ProductDetails({ product, demo, close }: { product: GamerProduct; demo:
   </dialog>;
 }
 
+function CatalogDetails({ product, close }: { product: CatalogProduct; close: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => { const el = dialog.current; el?.showModal(); return () => { el?.close(); }; }, []);
+  const photo = product.images[0];
+  const details = [["tag", "Categoria", product.category.name], ["barcode", "Código", product.sku], ...(product.brand ? [["copyright", "Marca", product.brand.name]] : []), ...(product.model ? [["microchip", "Modelo", product.model]] : [])];
+  return <dialog ref={dialog} className={s.dialog} onCancel={close} onClick={e => { if (e.target === e.currentTarget) close(); }} aria-labelledby="gamer-product-title">
+    <button className={s.close} onClick={close} aria-label="Fechar detalhes"><Icon name="xmark" /></button>
+    <div className={s.detailsImage}>{photo && <Image src={photo.url} unoptimized alt={photo.alt || product.name} width={720} height={480} />}<small>Fotos do produto</small></div>
+    <div className={s.detailsBody}><span className={s.kicker}>K7 INFORMÁTICA / {product.category.name.toUpperCase()}</span><h2 id="gamer-product-title">{product.name}</h2>
+      <dl className={s.specs}>{details.map(([icon,label,value]) => <div key={label}><Icon name={icon} /><div><dt>{label}</dt><dd>{value}</dd></div></div>)}</dl>
+      <WarrantyBadge />
+      <strong className={s.price}>{product.price !== null ? money(product.price) : "Sob consulta"}</strong>
+      {product.availability !== "unavailable" ? <button type="button" className={`${s.primary} ${s.quoteButton}`} onClick={() => { close(); openContact(`Gostaria de consultar o produto ${product.name} (código ${product.sku}).`); }}><i className="fa-brands fa-whatsapp" aria-hidden="true" /> Solicitar orçamento</button> : <p>Produto temporariamente indisponível.</p>}
+      {product.description && <p className={s.productDescription}>{product.description}</p>}
+    </div>
+  </dialog>;
+}
+
 function Specs({ product }: { product: GamerProduct }) {
   return <dl className={s.specs}>{[["microchip", "Processador", product.processor], ["display", "Placa de vídeo", product.graphics], ["memory", "Memória", `${product.memoryGB} GB RAM`], ["hard-drive", "Armazenamento", product.storage]].map(([icon, label, value]) => <div key={label}><Icon name={icon} /><div><dt>{label}</dt><dd>{value}</dd></div></div>)}</dl>;
 }
@@ -53,6 +71,7 @@ export function GamerCatalog({ products, catalogUnavailable = false, allProducts
   const [order, setOrder] = useState("name");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [selected, setSelected] = useState<GamerProduct | null>(null);
+  const [selectedCatalog, setSelectedCatalog] = useState<CatalogProduct | null>(null);
   const source = demo ? demoProducts : products;
   const categoryIds = new Map(categories.map(item => [item.slug,item.id]));
   const chosenId = categoryIds.get(category);
@@ -86,7 +105,7 @@ export function GamerCatalog({ products, catalogUnavailable = false, allProducts
           <p>Produtos sob consulta não entram no filtro de preço.</p>
           {(category||search||budget||brand)&&<button className={s.clear} onClick={clearFilters}>Limpar filtros</button>}
           <div className={s.filterHelp}><Icon name="headset"/><h4>Não sabe qual escolher?</h4><p>Conte o que você procura. A K7 ajuda a encontrar o produto ideal.</p><button type="button" onClick={()=>openContact("Quero ajuda para escolher um produto de informática.")}>Conversar com a K7 <Icon name="arrow-right"/></button></div>
-        </aside><div className={s.productGrid}>{catalogResults.map(p=><article className={s.card} key={p.sku}><div className={s.cardImage}><span className={s.tag}>{p.availability==="available"?"Disponível":p.availability==="unavailable"?"Indisponível":"Sob consulta"}</span>{p.images[0]&&<img src={p.images[0].url} alt={p.images[0].alt} loading="lazy"/>}<small>Código: {p.sku}</small></div><div className={s.cardBody}><span className={s.cardEyebrow}>{p.category.name.toUpperCase()}</span><h3>{p.name}</h3><p>{p.brand?.name||"K7 Informática"}{p.model?` · ${p.model}`:""}</p><WarrantyBadge/><div className={s.cardBottom}><span>VALOR DO PRODUTO</span><strong className={s.price}>{p.price!==null?money(p.price):"Sob consulta"}</strong><Link href={`/produtos/${p.slug}`} className={s.primary}>Ver detalhes <Icon name="arrow-right"/></Link></div></div></article>)}{catalogResults.length===0&&<div className={s.empty}><Icon name="boxes-stacked"/><h3>{catalogUnavailable?"Catálogo temporariamente indisponível":"Nenhum produto encontrado"}</h3><p>{catalogUnavailable?"Não foi possível carregar os produtos. Fale com a K7 para consultar.":"Tente outra categoria ou limpe os filtros."}</p><button className={s.primary} onClick={clearFilters}>Limpar filtros</button></div>}</div></div>
+        </aside><div className={s.productGrid}>{catalogResults.map(p => <article className={s.card} key={p.sku}><div className={s.cardImage}><span className={s.tag}>{p.availability === "available" ? "Até durar estoque" : p.availability === "unavailable" ? "Indisponível" : "Sob consulta"}</span>{p.images[0] && <Image src={p.images[0].url} unoptimized alt={p.images[0].alt || p.name} width={600} height={400} sizes="(max-width: 600px) 90vw, (max-width: 1000px) 40vw, 25vw" />}<small>Código: {p.sku}</small></div><div className={s.cardBody}><span className={s.cardEyebrow}>K7 INFORMÁTICA / {p.category.name.toUpperCase()}</span><h3>{p.name}</h3><dl className={s.specs}><div><Icon name="tag"/><div><dt>Categoria</dt><dd>{p.category.name}</dd></div></div>{p.brand && <div><Icon name="copyright"/><div><dt>Marca</dt><dd>{p.brand.name}</dd></div></div>}{p.model && <div><Icon name="microchip"/><div><dt>Modelo</dt><dd>{p.model}</dd></div></div>}<div><Icon name="box"/><div><dt>Disponibilidade</dt><dd>{p.availability === "available" ? "Disponível" : p.availability === "unavailable" ? "Indisponível" : "Sob consulta"}</dd></div></div></dl><WarrantyBadge/><div className={s.cardBottom}><span>VALOR DO PRODUTO</span><strong className={s.price}>{p.price !== null ? money(p.price) : "Sob consulta"}</strong><button type="button" className={s.primary} onClick={() => setSelectedCatalog(p)}>Ver produto <Icon name="arrow-right"/></button></div></div></article>)}{catalogResults.length===0&&<div className={s.empty}><Icon name="boxes-stacked"/><h3>{catalogUnavailable?"Catálogo temporariamente indisponível":"Nenhum produto encontrado"}</h3><p>{catalogUnavailable?"Não foi possível carregar os produtos. Fale com a K7 para consultar.":"Tente outra categoria ou limpe os filtros."}</p><button className={s.primary} onClick={clearFilters}>Limpar filtros</button></div>}</div></div>
       </section>
     </main>
     <footer className={s.footer}>
@@ -100,5 +119,6 @@ export function GamerCatalog({ products, catalogUnavailable = false, allProducts
     </footer>
     <div className={s.gamerContact}><ContactModal variant="gamer" /></div>
     {selected && <ProductDetails product={selected} demo={demo} close={() => setSelected(null)} />}
+    {selectedCatalog && <CatalogDetails product={selectedCatalog} close={() => setSelectedCatalog(null)} />}
   </div>;
 }
