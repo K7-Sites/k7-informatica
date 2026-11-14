@@ -1,8 +1,8 @@
 export const site = {
   name: "K7 Informática",
   url: "https://www.k7informatica.com",
-  phone: "(11) 94921-4071",
-  phoneRaw: "5511949214071",
+  phone: "(11) 99210-8602",
+  phoneRaw: "5511992108602",
   email: "atendimento@k7informatica.com",
   instagram: "https://www.instagram.com/kassiokennedy_/",
 };
