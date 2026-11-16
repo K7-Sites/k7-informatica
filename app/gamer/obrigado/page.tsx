@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import s from "./thanks.module.css";
+import { ServiceArea } from "@/components/ServiceArea";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Obrigado pelo contato | K7 Informática Gamer",
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function GamerThankYouPage() {
-  return <main className={s.page}>
+  return <><main className={s.page}>
     <Link href="/gamer/pc-gamer" className={s.logo} aria-label="Voltar ao catálogo K7 Informática"><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} priority /></Link>
     <section className={s.card} aria-labelledby="thanks-title">
       <div className={s.check} aria-hidden="true"><i className="fa-solid fa-check" /></div>
@@ -25,5 +27,5 @@ export default function GamerThankYouPage() {
       <Link href="/" className={s.secondary} target="_blank" rel="noopener noreferrer">Conhecer a assistência técnica <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" /></Link>
     </section>
     <p className={s.footer}>K7 Informática · Seu próximo setup começa aqui.</p>
-  </main>;
+  </main><ServiceArea /><SiteFooter /></>;
 }

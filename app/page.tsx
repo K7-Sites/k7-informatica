@@ -10,7 +10,10 @@ import { RevealObserver } from "@/components/Reveal";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { Tips } from "@/components/Tips";
 import { FAQ } from "@/components/FAQ";
+import { ServiceArea } from "@/components/ServiceArea";
+import { SiteFooter } from "@/components/SiteFooter";
 import { site, whatsappUrl } from "@/lib/site";
+import { businessAddress, mapsDirectionsUrl, serviceAreaDistricts } from "@/lib/service-area";
 
 const symptoms = [["fa-gauge-high","Notebook lento"],["fa-triangle-exclamation","Travamentos"],["fa-temperature-high","Superaquecimento"],["fa-display","Tela quebrada"],["fa-battery-quarter","Bateria não carrega"],["fa-keyboard","Teclado com defeito"],["fa-power-off","Sistema não inicia"],["fa-hard-drive","Pouco espaço"],["fa-shield-virus","Vírus e malware"]];
 const minorServices = [["fa-temperature-half","Pasta térmica","Renovação do contato térmico após avaliação."],["fa-display","Troca de tela","Avaliação de telas quebradas, riscadas ou manchadas."],["fa-hard-drive","Instalação de SSD","Compatibilidade, instalação e configuração."],["fa-memory","Upgrade de RAM","Mais espaço para multitarefa e programas."],["fa-rotate","Formatação","Sistema organizado e configurado para uso."],["fa-cloud-arrow-up","Backup","Orientação e cópia de dados quando viável."],["fa-wind","Limpeza interna","Remoção de poeira e avaliação térmica."],["fa-shield-halved","Remoção de vírus","Análise e limpeza de ameaças no sistema."],["fa-battery-full","Troca de bateria","Avaliação de carga e substituição compatível."],["fa-laptop","Reparo de dobradiça","Análise de tampa, carcaça e articulação."],["fa-compact-disc","Instalação de sistemas","Instalação e configuração de software."],["fa-gamepad","Upgrade de GPU","Avaliação de compatibilidade para desktops."]];
@@ -20,7 +23,27 @@ const attendance = [["fa-desktop","Computador"],["fa-laptop","Notebook"],["fa-la
 const regions = ["Tucuruvi","Santana","Jaçanã","Tremembé","Jardim Fontales","Vila Guilherme","Vila Maria","Casa Verde"];
 const technologies = [["fa-brands fa-windows","Windows"],["fa-brands fa-apple","Apple"],["fa-brands fa-linux","Linux"],["fa-solid fa-laptop","Notebook"],["fa-solid fa-desktop","Desktop"],["fa-solid fa-gamepad","PC Gamer"]];
 
-const schema = { "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${site.url}/#website`, url: `${site.url}/`, name: site.name, inLanguage: "pt-BR", publisher: { "@id": `${site.url}/#business` } }, { "@type": ["LocalBusiness", "ProfessionalService"], "@id": `${site.url}/#business`, name: site.name, description: "Assistência técnica especializada em manutenção de notebooks e computadores na Zona Norte de São Paulo.", url: `${site.url}/`, logo: `${site.url}/images/logo-k7-informatica.png`, image: `${site.url}/images/hero-hardware.png`, telephone: `+${site.phoneRaw}`, email: site.email, address: { "@type": "PostalAddress", addressLocality: "São Paulo", addressRegion: "SP", addressCountry: "BR" }, areaServed: ["Tucuruvi","Santana","Jaçanã","Tremembé","Jardim Fontales","Vila Guilherme","Vila Maria","Casa Verde","São Paulo"].map(name => ({ "@type": "Place", name })), sameAs: [site.instagram] }, { "@type": "Service", "@id": `${site.url}/#service`, name: "Assistência técnica de notebooks e computadores", url: `${site.url}/#servicos`, provider: { "@id": `${site.url}/#business` }, areaServed: { "@type": "City", name: "São Paulo" }, serviceType: ["Manutenção de notebook", "Manutenção de computador", "Instalação de SSD", "Upgrade de memória RAM", "Troca de tela de notebook", "Formatação", "Limpeza interna", "Suporte técnico"] }] };
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${site.url}/#website`, url: `${site.url}/`, name: site.name, inLanguage: "pt-BR", publisher: { "@id": `${site.url}/#business` } },
+    {
+      "@type": ["LocalBusiness", "ProfessionalService"], "@id": `${site.url}/#business`, name: site.name,
+      description: "Assistência técnica de notebooks, computadores e PC gamer em todos os bairros da Zona Norte de São Paulo.",
+      url: `${site.url}/`, logo: `${site.url}/images/logo-k7-informatica.png`, image: `${site.url}/images/hero-hardware.png`,
+      telephone: `+${site.phoneRaw}`, email: site.email, hasMap: mapsDirectionsUrl,
+      address: { "@type": "PostalAddress", streetAddress: `${businessAddress.streetAddress}, ${businessAddress.neighborhood}`, addressLocality: businessAddress.city, addressRegion: businessAddress.state, addressCountry: businessAddress.country },
+      areaServed: serviceAreaDistricts.map(name => ({ "@type": "Place", name: `${name}, São Paulo - SP` })),
+      sameAs: [site.instagram],
+    },
+    {
+      "@type": "Service", "@id": `${site.url}/#service`, name: "Assistência técnica de notebooks e computadores",
+      url: `${site.url}/#servicos`, provider: { "@id": `${site.url}/#business` },
+      areaServed: serviceAreaDistricts.map(name => ({ "@type": "Place", name: `${name}, São Paulo - SP` })),
+      serviceType: ["Manutenção de notebook", "Manutenção de computador", "Instalação de SSD", "Upgrade de memória RAM", "Troca de tela de notebook", "Formatação", "Limpeza interna", "Suporte técnico"],
+    },
+  ],
+};
 
 export default function Home() {
   return <><Header /><ContactModal /><RevealObserver /><main>
@@ -62,5 +85,5 @@ export default function Home() {
     <section className="section container" id="duvidas"><div className="section-head reveal"><p className="eyebrow">PERGUNTAS FREQUENTES</p><h2>Dúvidas antes de solicitar assistência?</h2><p>Estas respostas ajudam na orientação inicial. Para o seu caso, fale diretamente com a K7.</p></div><div className="reveal"><FAQ /></div></section>
     <section className="section section-dark" id="contato"><div className="container"><div className="section-head"><p className="eyebrow">FALE COM A K7</p><h2>Solicite atendimento para seu equipamento</h2><p>Preencha seus dados e retornaremos pelo WhatsApp. O orçamento depende da avaliação do equipamento.</p></div><ContactForm /></div></section>
     <section className="final-cta"><div className="container reveal"><p className="eyebrow">SEU EQUIPAMENTO PODE VOLTAR À ROTINA</p><h2>Seu computador não precisa continuar lento ou parado.</h2><p>Conte o que está acontecendo e receba uma orientação inicial sobre o seu equipamento.</p><ContactActions><WhatsAppLink className="button" href={whatsappUrl()} location="cta"><i className="fa-brands fa-whatsapp" /> Falar com a K7 Informática</WhatsAppLink></ContactActions></div></section>
-  </main><footer><div className="container footer-grid"><div><a className="brand brand-logo footer-logo" href="#inicio" aria-label="K7 Informática, início"><Image src="/images/logo-k7-informatica.svg" alt="Logo K7 Informática" width={471} height={267} sizes="190px" /></a><p>Tucuruvi — São Paulo — SP<br/>Zona Norte</p></div><div><h2>Contato</h2><a href={`tel:+${site.phoneRaw}`}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.instagram} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-instagram" /> Instagram</a></div><div><h2>Navegação</h2><a href="#servicos">Serviços</a><a href="#como-funciona">Como funciona</a><a href="#dicas">Dicas</a><a href="#regioes">Regiões atendidas</a><a href="#sobre">Sobre</a><a href="#duvidas">FAQ</a></div><div><h2>Precisa de assistência?</h2><p>Explique o problema e solicite uma avaliação.</p><ContactActions><WhatsAppLink className="button" href={whatsappUrl()} location="footer">Falar no WhatsApp</WhatsAppLink></ContactActions></div></div><div className="container footer-bottom"><span>© 2026 K7 Informática</span><span>Desenvolvido por <a className="k7-sites-link" href="https://k7sites.com.br/" target="_blank" rel="noopener noreferrer">K7 Sites</a></span></div></footer><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} /></>;
+  </main><ServiceArea /><SiteFooter /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} /></>;
 }

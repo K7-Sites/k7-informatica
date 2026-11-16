@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ContactModal } from "@/components/ContactModal";
+import { ServiceArea } from "@/components/ServiceArea";
+import { FooterLocation } from "@/components/FooterLocation";
 import { site } from "@/lib/site";
 import { demoProducts, type GamerProduct } from "../_data/products";
 import s from "./catalog.module.css";
@@ -107,6 +109,7 @@ export function GamerCatalog({ products, catalogUnavailable = false, allProducts
         </aside><div className={s.productGrid}>{catalogResults.map(p => <article className={s.card} key={p.sku}><div className={s.cardImage}><span className={s.tag}>{p.availability === "available" ? "Até durar estoque" : p.availability === "unavailable" ? "Indisponível" : "Sob consulta"}</span>{p.images[0] && <Image src={p.images[0].url} unoptimized alt={p.images[0].alt || p.name} width={600} height={400} sizes="(max-width: 600px) 90vw, (max-width: 1000px) 40vw, 25vw" />}<small>Código: {p.sku}</small></div><div className={s.cardBody}><span className={s.cardEyebrow}>K7 INFORMÁTICA</span><h3>{p.name}</h3><dl className={s.specs}>{p.product_type === "computer" || p.computer_specs ? <>{p.computer_specs?.processor && <div><Icon name="microchip"/><div><dt>Processador</dt><dd>{p.computer_specs.processor}</dd></div></div>}{p.computer_specs?.ram_gb != null && <div><Icon name="memory"/><div><dt>Memória RAM</dt><dd>{p.computer_specs.ram_gb} GB</dd></div></div>}{p.computer_specs?.storage_gb != null && <div><Icon name="hard-drive"/><div><dt>Armazenamento</dt><dd>{p.computer_specs.storage_type} {p.computer_specs.storage_gb} GB</dd></div></div>}</> : <>{p.brand && <div><Icon name="copyright"/><div><dt>Marca</dt><dd>{p.brand.name}</dd></div></div>}{p.model && <div><Icon name="microchip"/><div><dt>Modelo</dt><dd>{p.model}</dd></div></div>}</>}</dl><div className={s.cardBottom}><span>VALOR DO PRODUTO</span><strong className={s.price}>{p.price !== null ? money(p.price) : "Sob consulta"}</strong><button type="button" className={`${s.primary} ${s.viewProductButton}`} onClick={() => setSelectedCatalog(p)}>Ver produto <Icon name="arrow-right"/></button></div></div></article>)}{catalogResults.length===0&&<div className={s.empty}><Icon name="boxes-stacked"/><h3>{catalogUnavailable?"Catálogo temporariamente indisponível":"Nenhum produto encontrado"}</h3><p>{catalogUnavailable?"Não foi possível carregar os produtos. Fale com a K7 para consultar.":"Tente outra categoria ou limpe os filtros."}</p><button className={s.primary} onClick={clearFilters}>Limpar filtros</button></div>}</div></div>
       </section>
     </main>
+    <ServiceArea theme="light" />
     <footer className={s.footer}>
       <div className={s.footerColumns}>
         <div className={s.footerBrand}><Link href="/gamer/pc-gamer" aria-label="K7 Informática, PCs Gamer"><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} /></Link><p>Seu setup começa com uma boa escolha.</p></div>
@@ -114,7 +117,8 @@ export function GamerCatalog({ products, catalogUnavailable = false, allProducts
         <div className={s.footerSecurity}><h3>Segurança</h3><div className={s.googleSecurity}><Image src="/images/gamer/payments/google.svg" alt="Google" width={90} height={30} /><span><Icon name="shield-halved" /> Navegação segura</span></div></div>
         <div className={s.footerContact}><h3>Atendimento</h3><button type="button" onClick={() => openContact("Gostaria de falar sobre um PC Gamer.")}>{site.phone}</button><button type="button" onClick={() => openContact()}>{site.email}</button></div>
       </div>
-      <div className={s.footerBottom}><p>SOMOS E-COMMERCE - NÃO TEMOS ATENDIMENTO LOCAL</p><small>© {new Date().getFullYear()} K7 Informática.</small></div>
+      <FooterLocation />
+      <div className={s.footerBottom}><p>VENDAS ONLINE · ATENDIMENTO TÉCNICO SOMENTE COM AGENDAMENTO</p><small>© {new Date().getFullYear()} K7 Informática.</small></div>
     </footer>
     <div className={s.gamerContact}><ContactModal variant="gamer" /></div>
     {selected && <ProductDetails product={selected} demo={demo} close={() => setSelected(null)} />}

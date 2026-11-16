@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { services } from "@/lib/services";
 import { site, whatsappUrl } from "@/lib/site";
@@ -22,7 +23,7 @@ export function Header() {
       </div>
     </div>
     <div className="container header-inner">
-      <a className="brand brand-logo" href="/" aria-label={`${site.name}, início`}><Image src="/images/logo-k7-informatica.svg" alt="Logo K7 Informática" width={471} height={267} priority sizes="(max-width: 780px) 142px, 176px" /></a>
+      <Link className="brand brand-logo" href="/" aria-label={`${site.name}, início`}><Image src="/images/logo-k7-informatica.svg" alt="Logo K7 Informática" width={471} height={267} priority sizes="(max-width: 780px) 142px, 176px" /></Link>
       <nav className={`nav ${open ? "open" : ""}`} aria-label="Navegação principal">
         {nav.map(([label, href]) => <a key={href} href={`/${href}`} onClick={() => setOpen(false)}>{label}</a>)}
         <a className="nav-gamer-link" href="/gamer/pc-gamer" onClick={() => setOpen(false)}><i className="fa-solid fa-desktop" aria-hidden="true" /> Comprar PC GAMER</a>
