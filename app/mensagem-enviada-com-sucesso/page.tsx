@@ -3,9 +3,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ServiceArea } from "@/components/ServiceArea";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ContactModal } from "@/components/ContactModal";
 export const metadata: Metadata = { title: "Mensagem enviada com sucesso | K7 Informática", robots: { index: false, follow: false } };
 export default function ThankYouPage() {
-  return <><main className="thanks-page"><div className="thanks-content">
+  return <><ContactModal /><main className="thanks-page"><div className="thanks-content">
     <Image src="/images/logo-k7-informatica.svg" alt="K7 Informática" width={240} height={136} priority />
     <div className="thanks-check" aria-hidden="true">✓</div>
     <h1>Obrigado!</h1>

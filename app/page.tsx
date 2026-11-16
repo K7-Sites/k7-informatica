@@ -13,7 +13,7 @@ import { FAQ } from "@/components/FAQ";
 import { ServiceArea } from "@/components/ServiceArea";
 import { SiteFooter } from "@/components/SiteFooter";
 import { site, whatsappUrl } from "@/lib/site";
-import { businessAddress, mapsDirectionsUrl, serviceAreaDistricts } from "@/lib/service-area";
+import { serviceAreaDistricts } from "@/lib/service-area";
 
 const symptoms = [["fa-gauge-high","Notebook lento"],["fa-triangle-exclamation","Travamentos"],["fa-temperature-high","Superaquecimento"],["fa-display","Tela quebrada"],["fa-battery-quarter","Bateria não carrega"],["fa-keyboard","Teclado com defeito"],["fa-power-off","Sistema não inicia"],["fa-hard-drive","Pouco espaço"],["fa-shield-virus","Vírus e malware"]];
 const minorServices = [["fa-temperature-half","Pasta térmica","Renovação do contato térmico após avaliação."],["fa-display","Troca de tela","Avaliação de telas quebradas, riscadas ou manchadas."],["fa-hard-drive","Instalação de SSD","Compatibilidade, instalação e configuração."],["fa-memory","Upgrade de RAM","Mais espaço para multitarefa e programas."],["fa-rotate","Formatação","Sistema organizado e configurado para uso."],["fa-cloud-arrow-up","Backup","Orientação e cópia de dados quando viável."],["fa-wind","Limpeza interna","Remoção de poeira e avaliação térmica."],["fa-shield-halved","Remoção de vírus","Análise e limpeza de ameaças no sistema."],["fa-battery-full","Troca de bateria","Avaliação de carga e substituição compatível."],["fa-laptop","Reparo de dobradiça","Análise de tampa, carcaça e articulação."],["fa-compact-disc","Instalação de sistemas","Instalação e configuração de software."],["fa-gamepad","Upgrade de GPU","Avaliação de compatibilidade para desktops."]];
@@ -31,8 +31,7 @@ const schema = {
       "@type": ["LocalBusiness", "ProfessionalService"], "@id": `${site.url}/#business`, name: site.name,
       description: "Assistência técnica de notebooks, computadores e PC gamer em todos os bairros da Zona Norte de São Paulo.",
       url: `${site.url}/`, logo: `${site.url}/images/logo-k7-informatica.png`, image: `${site.url}/images/hero-hardware.png`,
-      telephone: `+${site.phoneRaw}`, email: site.email, hasMap: mapsDirectionsUrl,
-      address: { "@type": "PostalAddress", streetAddress: `${businessAddress.streetAddress}, ${businessAddress.neighborhood}`, addressLocality: businessAddress.city, addressRegion: businessAddress.state, addressCountry: businessAddress.country },
+      telephone: `+${site.phoneRaw}`, email: site.email,
       areaServed: serviceAreaDistricts.map(name => ({ "@type": "Place", name: `${name}, São Paulo - SP` })),
       sameAs: [site.instagram],
     },

@@ -36,15 +36,3 @@ export const serviceAreaDistricts = [
   "Mandaqui", "Santana", "Tucuruvi", "Jaçanã", "Tremembé",
   "Vila Guilherme", "Vila Maria", "Vila Medeiros",
 ] as const;
-
-export const businessAddress = {
-  streetAddress: "Rua Francisco Bagatti, 381",
-  neighborhood: "Associação Sobradinho",
-  city: "São Paulo",
-  state: "SP",
-  country: "BR",
-} as const;
-
-const mapQuery = `${businessAddress.streetAddress}, ${businessAddress.neighborhood}, ${businessAddress.city} - ${businessAddress.state}`;
-export const mapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
-export const mapsDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;

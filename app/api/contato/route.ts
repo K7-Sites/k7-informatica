@@ -1,4 +1,10 @@
 import { NextResponse } from "next/server";
+import { serviceAreaGroups } from "@/lib/service-area";
+
+const allowedRegions = new Set<string>([
+  "Zona Norte de São Paulo",
+  ...serviceAreaGroups.flatMap(group => [group.name, ...group.neighborhoods]),
+]);
 
 export async function POST(request: Request) {
   const token = process.env.K7_GESTAO_LEAD_TOKEN;
@@ -10,6 +16,7 @@ export async function POST(request: Request) {
   const name = typeof input.name === "string" ? input.name.trim() : "";
   const phone = typeof input.phone === "string" ? input.phone.trim() : "";
   const service = typeof input.service === "string" ? input.service : "";
+  const region = typeof input.region === "string" ? input.region.trim() : "";
   const website = typeof input.website === "string" ? input.website.trim() : "";
   const submissionId = typeof input.submission_id === "string" ? input.submission_id : "";
   const landingPath = typeof input.landing_path === "string" ? input.landing_path.slice(0, 255) : "/";
@@ -36,7 +43,7 @@ export async function POST(request: Request) {
   const allowedServices = gamer ? ["", "Personalizar PC Gamer", "Comprar PC Gamer", "Assistência técnica", "Outro"] : ["Notebook", "Computador", "Outro"];
   const pageName = gamer ? "Catálogo PC Gamer" : landingPath === "/" ? "Página inicial" : servicePages[landingPath] || "Outra página";
   const pageUrl = `https://www.k7informatica.com${landingPath.startsWith("/") ? landingPath : "/"}`;
-  if (name.length < 2 || name.length > 255 || !/^(?:55)?[1-9][0-9]{9,10}$/.test(phone.replace(/\D/g, "")) || !allowedServices.includes(service) || (gamer && (email.length > 255 || (email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) || message.length > 2000)) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionId)) {
+  if (name.length < 2 || name.length > 255 || !/^(?:55)?[1-9][0-9]{9,10}$/.test(phone.replace(/\D/g, "")) || !allowedServices.includes(service) || (region !== "" && !allowedRegions.has(region)) || (gamer && (email.length > 255 || (email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) || message.length > 2000)) || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(submissionId)) {
     return NextResponse.json({ message: "Confira nome, WhatsApp e mensagem." }, { status: 422 });
   }
   if (website) return NextResponse.json({ message: "Contato recebido." });
@@ -47,7 +54,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         name, phone, service: "outros", submission_id: submissionId,
         origin: "k7-informatica", project_type: gamer ? (service || "Outro") : "Assistência técnica",
-        project_message: `${gamer ? "Interesse solicitado" : "Serviço solicitado"}: ${service || "Não informado"}${gamer && email ? `\nE-mail: ${email}` : ""}${gamer && message ? `\nMensagem: ${message}` : ""}\nPágina de origem: ${pageName}\nURL de origem: ${pageUrl}`,
+        project_message: `${gamer ? "Interesse solicitado" : "Serviço solicitado"}: ${service || "Não informado"}${gamer && email ? `\nE-mail: ${email}` : ""}${gamer && message ? `\nMensagem: ${message}` : ""}${region ? `\nRegião de atendimento: ${region}` : ""}\nPágina de origem: ${pageName}\nURL de origem: ${pageUrl}`,
         utm_source: typeof input.utm_source === "string" ? input.utm_source.slice(0, 255) : undefined,
         utm_medium: typeof input.utm_medium === "string" ? input.utm_medium.slice(0, 255) : undefined,
         utm_campaign: typeof input.utm_campaign === "string" ? input.utm_campaign.slice(0, 255) : undefined,

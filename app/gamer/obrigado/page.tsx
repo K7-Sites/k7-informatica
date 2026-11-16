@@ -4,6 +4,7 @@ import Link from "next/link";
 import s from "./thanks.module.css";
 import { ServiceArea } from "@/components/ServiceArea";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ContactModal } from "@/components/ContactModal";
 
 export const metadata: Metadata = {
   title: "Obrigado pelo contato | K7 Informática Gamer",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function GamerThankYouPage() {
-  return <><main className={s.page}>
+  return <><ContactModal /><main className={s.page}>
     <Link href="/gamer/pc-gamer" className={s.logo} aria-label="Voltar ao catálogo K7 Informática"><Image src="/images/logo-k7-informatica.png" alt="K7 Informática" width={200} height={105} priority /></Link>
     <section className={s.card} aria-labelledby="thanks-title">
       <div className={s.check} aria-hidden="true"><i className="fa-solid fa-check" /></div>

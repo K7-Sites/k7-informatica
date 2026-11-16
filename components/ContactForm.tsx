@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export function ContactForm({ onSuccess, variant = "default", initialMessage = "" }: { onSuccess?: () => void; variant?: "default" | "gamer"; initialMessage?: string }) {
+export function ContactForm({ onSuccess, variant = "default", initialMessage = "", selectedRegion = "" }: { onSuccess?: () => void; variant?: "default" | "gamer"; initialMessage?: string; selectedRegion?: string }) {
   const gamer = variant === "gamer";
   const router = useRouter();
   const [busy, setBusy] = useState(false);
@@ -35,6 +35,7 @@ export function ContactForm({ onSuccess, variant = "default", initialMessage = "
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"), phone: data.get("phone"), service: data.get("service"),
+          ...(selectedRegion ? { region: selectedRegion } : {}),
           website: data.get("website"), submission_id: id,
           ...(gamer ? { email: data.get("email"), message: data.get("message") } : {}),
           landing_path: landingPath, landing_url: landingUrl,
@@ -53,6 +54,7 @@ export function ContactForm({ onSuccess, variant = "default", initialMessage = "
   }
   return <form onSubmit={submit} className="contact-lead-form">
     <h3>Preencha o formulário</h3>
+    {selectedRegion && <p className="contact-selected-region"><i className="fa-solid fa-location-dot" aria-hidden="true" /> Região selecionada: <strong>{selectedRegion}</strong></p>}
     <label>Nome<input name="name" required minLength={2} maxLength={255} autoComplete="name" placeholder="Seu nome" /></label>
     {gamer && <label>E-mail<input name="email" type="email" maxLength={255} autoComplete="email" placeholder="Seu e-mail (opcional)" /></label>}
     <label>Telefone / WhatsApp<input name="phone" type="tel" required inputMode="numeric" minLength={14} maxLength={15} value={phone} onChange={e => setPhone(formatPhone(e.target.value))} autoComplete="tel" placeholder="(11) 99999-9999" /></label>

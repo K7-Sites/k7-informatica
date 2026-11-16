@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ContactModal } from "@/components/ContactModal";
 import { ServiceArea } from "@/components/ServiceArea";
-import { FooterLocation } from "@/components/FooterLocation";
 import { site } from "@/lib/site";
 import { demoProducts, type GamerProduct } from "../_data/products";
 import s from "./catalog.module.css";
@@ -117,8 +116,7 @@ export function GamerCatalog({ products, catalogUnavailable = false, allProducts
         <div className={s.footerSecurity}><h3>Segurança</h3><div className={s.googleSecurity}><Image src="/images/gamer/payments/google.svg" alt="Google" width={90} height={30} /><span><Icon name="shield-halved" /> Navegação segura</span></div></div>
         <div className={s.footerContact}><h3>Atendimento</h3><button type="button" onClick={() => openContact("Gostaria de falar sobre um PC Gamer.")}>{site.phone}</button><button type="button" onClick={() => openContact()}>{site.email}</button></div>
       </div>
-      <FooterLocation />
-      <div className={s.footerBottom}><p>VENDAS ONLINE · ATENDIMENTO TÉCNICO SOMENTE COM AGENDAMENTO</p><small>© {new Date().getFullYear()} K7 Informática.</small></div>
+      <div className={s.footerBottom}><p>SOMOS E-COMMERCE - NÃO TEMOS ATENDIMENTO LOCAL</p><small>© {new Date().getFullYear()} K7 Informática.</small></div>
     </footer>
     <div className={s.gamerContact}><ContactModal variant="gamer" /></div>
     {selected && <ProductDetails product={selected} demo={demo} close={() => setSelected(null)} />}

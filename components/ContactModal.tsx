@@ -3,10 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import { ContactForm } from "@/components/ContactForm";
 export function ContactModal({ variant = "default" }: { variant?: "default" | "gamer" }) {
   const [initialMessage, setInitialMessage] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [open, setOpen] = useState(false);
   const closeButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const openModal = (event: Event) => { setInitialMessage((event as CustomEvent<{ message?: string }>).detail?.message || ""); setOpen(true); };
+    const openModal = (event: Event) => {
+      const detail = (event as CustomEvent<{ message?: string; region?: string }>).detail;
+      setInitialMessage(detail?.message || "");
+      setSelectedRegion(detail?.region || "");
+      setOpen(true);
+    };
     window.addEventListener("k7:open-contact", openModal);
     return () => window.removeEventListener("k7:open-contact", openModal);
   }, []);
@@ -34,7 +40,7 @@ export function ContactModal({ variant = "default" }: { variant?: "default" | "g
   return <div className="contact-modal-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) setOpen(false); }}>
     <div className="contact-modal-panel" role="dialog" aria-modal="true" aria-label="Solicitar contato">
       <button ref={closeButton} className="contact-modal-close" type="button" aria-label="Fechar formulário" onClick={() => setOpen(false)}>×</button>
-      <ContactForm variant={variant} initialMessage={initialMessage} onSuccess={() => setOpen(false)} />
+      <ContactForm variant={variant} initialMessage={initialMessage} selectedRegion={selectedRegion} onSuccess={() => setOpen(false)} />
     </div>
   </div>;
 }

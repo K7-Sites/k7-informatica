@@ -13,7 +13,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { services, findService } from "@/lib/services";
 import { site, whatsappUrl } from "@/lib/site";
-import { businessAddress, serviceAreaDistricts } from "@/lib/service-area";
+import { serviceAreaDistricts } from "@/lib/service-area";
 const regions = ["Tucuruvi","Santana","Jaçanã","Tremembé","Jardim Fontales","Vila Guilherme","Vila Maria","Casa Verde"];
 const technologies = [["fa-brands fa-windows","Windows"],["fa-brands fa-apple","Apple"],["fa-brands fa-linux","Linux"],["fa-solid fa-laptop","Notebook"],["fa-solid fa-desktop","Desktop"],["fa-solid fa-gamepad","PC Gamer"]];
 const serviceHeroImages: Record<string,string> = {
@@ -61,7 +61,7 @@ export async function generateMetadata({params}:Props):Promise<Metadata>{
 export default async function ServicePage({params}:Props){
  const {slug}=await params;const s=findService(slug);if(!s)notFound();
  const related=services.filter(item=>item.slug!==slug).slice(0,14);
- const schema={"@context":"https://schema.org","@type":"Service",name:s.title,description:s.description,url:`${site.url}/servicos/${slug}`,provider:{"@type":"LocalBusiness",name:site.name,url:site.url,telephone:`+${site.phoneRaw}`,address:{"@type":"PostalAddress",streetAddress:`${businessAddress.streetAddress}, ${businessAddress.neighborhood}`,addressLocality:businessAddress.city,addressRegion:businessAddress.state,addressCountry:businessAddress.country}},areaServed:serviceAreaDistricts.map(name=>({"@type":"Place",name:`${name}, São Paulo - SP`}))};
+ const schema={"@context":"https://schema.org","@type":"Service",name:s.title,description:s.description,url:`${site.url}/servicos/${slug}`,provider:{"@type":"LocalBusiness",name:site.name,url:site.url,telephone:`+${site.phoneRaw}`},areaServed:serviceAreaDistricts.map(name=>({"@type":"Place",name:`${name}, São Paulo - SP`}))};
  return <><Header/><ContactModal/><RevealObserver/><main>
  <section className="hero service-screen-hero service-background-hero" id="inicio"><div className="service-hero-background" aria-hidden="true"><Image className="service-hero-background-image" src={serviceHeroImages[slug]} alt="" fill priority sizes="100vw"/><div className="service-hero-background-shade"/></div><div className="container service-background-hero-layout"><div className="service-screen-hero-copy"><p className="eyebrow"><span/> ASSISTÊNCIA TÉCNICA • TUCURUVI • ZONA NORTE DE SÃO PAULO</p><h1>{s.title}</h1><div className="hero-actions"><ContactActions><WhatsAppLink className="button" href={whatsappUrl(`Olá, gostaria de solicitar avaliação para ${s.title.toLowerCase()}.`)} location="hero"><i className="fa-brands fa-whatsapp"/> Solicitar orçamento</WhatsAppLink></ContactActions></div><p className="service-screen-hero-note"><i className="fa-solid fa-location-dot"/> Atendimento no Tucuruvi e Zona Norte de São Paulo</p></div></div></section>
  <section className="tech-strip" aria-label="Equipamentos e sistemas atendidos"><div className="marquee"><div>{[...technologies,...technologies].map(([icon,label],i)=><span key={i}><i className={icon} aria-hidden="true"/>{label}</span>)}</div></div></section>

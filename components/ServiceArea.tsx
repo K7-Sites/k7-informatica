@@ -1,5 +1,5 @@
 import { serviceAreaGroups } from "@/lib/service-area";
-import { whatsappUrl } from "@/lib/site";
+import { RegionContactButton } from "@/components/RegionContactButton";
 import styles from "./ServiceArea.module.css";
 
 type Props = { theme?: "dark" | "light" };
@@ -45,8 +45,8 @@ export function ServiceArea({ theme = "dark" }: Props) {
         <div className={styles.grid}>
           {serviceAreaGroups.map(group => (
             <article className={styles.group} key={group.name}>
-              <h4><i className="fa-solid fa-location-dot" aria-hidden="true" /> {group.name}</h4>
-              <ul>{group.neighborhoods.map(name => <li key={name}>{name}</li>)}</ul>
+              <h4><RegionContactButton region={group.name} className={styles.groupHeading}><i className="fa-solid fa-location-dot" aria-hidden="true" /> {group.name}</RegionContactButton></h4>
+              <ul>{group.neighborhoods.map(name => <li key={name}><RegionContactButton region={name} className={styles.neighborhood}>{name}</RegionContactButton></li>)}</ul>
             </article>
           ))}
         </div>
@@ -56,9 +56,9 @@ export function ServiceArea({ theme = "dark" }: Props) {
             <strong>Precisa de assistência no seu bairro?</strong>
             <p>Informe sua região e o problema do equipamento. Confirme a modalidade e a disponibilidade antes de se deslocar.</p>
           </div>
-          <a href={whatsappUrl("Olá, estou na Zona Norte de São Paulo e gostaria de consultar atendimento no meu bairro.")} target="_blank" rel="noopener noreferrer">
+          <RegionContactButton region="Zona Norte de São Paulo" className={styles.contactButton}>
             <i className="fa-brands fa-whatsapp" aria-hidden="true" /> Consultar atendimento <i className="fa-solid fa-arrow-right" aria-hidden="true" />
-          </a>
+          </RegionContactButton>
         </div>
       </div>
     </section>

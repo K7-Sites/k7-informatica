@@ -18,14 +18,18 @@
 .group{padding:23px 23px 25px;background:linear-gradient(150deg,rgba(20,31,54,.9),rgba(10,15,31,.9));border:1px solid rgba(216,221,230,.12);border-radius:16px;min-width:0}
 .group h4{display:flex;align-items:center;gap:10px;font-size:15px;line-height:1.4;margin:0 0 18px;color:#f1f5ff}
 .group h4 i{font-size:14px;color:#65a0ff}
+.groupHeading{display:inline-flex;align-items:center;gap:10px;padding:0;background:transparent;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.groupHeading:hover{color:#8eb8ff}
+.groupHeading:focus-visible,.neighborhood:focus-visible{outline:2px solid #8ab6ff;outline-offset:3px}
 .group ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
-.group li{font-size:12px;line-height:1.35;color:#c4d0e2;border:1px solid rgba(216,221,230,.13);background:rgba(255,255,255,.035);padding:7px 10px;border-radius:7px}
+.neighborhood{font-size:12px;line-height:1.35;color:#c4d0e2;border:1px solid rgba(216,221,230,.13);background:rgba(255,255,255,.035);padding:7px 10px;border-radius:7px;cursor:pointer;text-align:left;transition:background .2s,border-color .2s}
+.neighborhood:hover{background:rgba(21,101,255,.18);border-color:rgba(116,166,255,.55)}
 .contact{display:flex;justify-content:space-between;align-items:center;gap:26px;border-top:1px solid rgba(216,221,230,.14);margin-top:36px;padding-top:34px}
 .contact strong{font-size:19px}
 .contact p{font-size:13px;line-height:1.6;max-width:610px;color:#aebbd0;margin:7px 0 0}
-.contact a{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:11px;color:#fff;background:#1565ff;border:1px solid #3f82ff;padding:14px 20px;border-radius:9px;font-size:13px;font-weight:800;transition:background .2s,transform .2s}
-.contact a:hover{background:#0e50da;transform:translateY(-2px)}
-.contact a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.contactButton{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:11px;color:#fff;background:#1565ff;border:1px solid #3f82ff;padding:14px 20px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;transition:background .2s,transform .2s}
+.contactButton:hover{background:#0e50da;transform:translateY(-2px)}
+.contactButton:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .light{background:radial-gradient(ellipse at 90% 0%,#dbe8ff 0%,transparent 46%),#eef2f9;color:#14233d;border-color:#e0e7f1}
 .light .heading h2 em{color:#1565ff}
 .light .heading>p:last-child,.light .areaHeader>p{color:#53657e}
@@ -33,9 +37,11 @@
 .light .services h3,.light .group h4{color:#17243a}
 .light .services li{color:#465b76}
 .light .group{background:#fff;border-color:#dce4f0;box-shadow:0 10px 22px rgba(26,53,89,.035)}
-.light .group li{background:#f5f8fd;color:#465b76;border-color:#e2e9f4}
+.light .neighborhood{background:#f5f8fd;color:#465b76;border-color:#e2e9f4}
+.light .neighborhood:hover{background:#e5efff;border-color:#79a5f5}
+.light .groupHeading:hover{color:#1565ff}
 .light .contact{border-color:#d4dfec}
 .light .contact p{color:#52657e}
 @media(max-width:900px){.services ul,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.container{width:calc(100% - 30px)}.heading{text-align:left}.heading>p:last-child{font-size:15px}.services{padding:23px 20px;margin-bottom:40px}.services ul,.grid{grid-template-columns:1fr}.areaHeader,.contact{flex-direction:column;align-items:stretch}.areaHeader>p{max-width:none}.contact a{width:100%;flex:none}.group{padding:21px}.section{padding:74px 0}}
-@media(prefers-reduced-motion:reduce){.contact a{transition:none}.contact a:hover{transform:none}}
+@media(max-width:650px){.container{width:calc(100% - 30px)}.heading{text-align:left}.heading>p:last-child{font-size:15px}.services{padding:23px 20px;margin-bottom:40px}.services ul,.grid{grid-template-columns:1fr}.areaHeader,.contact{flex-direction:column;align-items:stretch}.areaHeader>p{max-width:none}.contactButton{width:100%;flex:none}.group{padding:21px}.section{padding:74px 0}}
+@media(prefers-reduced-motion:reduce){.contactButton,.neighborhood{transition:none}.contactButton:hover{transform:none}}
